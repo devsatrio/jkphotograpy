@@ -5,6 +5,12 @@
     <li class="nav-item">
         <a href="{{url('/admin')}}" class="nav-link">Admin</a>
     </li>
+    <li class="nav-item">
+        <a href="{{url('/pricelist')}}" class="nav-link">Price List</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{url('/transaksi')}}" class="nav-link">Transaksi</a>
+    </li>
     <li class="nav-item dropdown">
         <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             class="nav-link dropdown-toggle">Dropdown</a>

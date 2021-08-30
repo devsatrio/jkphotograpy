@@ -23,7 +23,7 @@
                 <p class="login-box-msg">Sign in to start your session</p>
 
                 <form action="{{ route('login') }}" method="post">
-                @csrf
+                    @csrf
                     <div class="input-group mb-3">
                         <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"
                             name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
@@ -40,7 +40,7 @@
                     @enderror
                     <div class="input-group mb-3">
                         <input id="password" type="password"
-                            class="form-control @error('password') is-invalid @enderror" name="password" required
+                            class="form-control @error('password') is-invalid @enderror" id="password" name="password" required
                             autocomplete="current-password">
 
 
@@ -58,10 +58,10 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                        {{ old('remember') ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                    onclick="seePassword()" }>
                                 <label for="remember">
-                                    Remember Me
+                                    Show Password
                                 </label>
                             </div>
                         </div>
@@ -92,6 +92,16 @@
     <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>
+    <script>
+    function seePassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    </script>
 
 </body>
 
