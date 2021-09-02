@@ -265,14 +265,14 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Dibayar</label>
                                             <input type="text" class="form-control" name="detail_dibayar"
-                                                id="detail_dibayar" value="{{number_format($row->dibayar,0,',','.')}}" required>
+                                                id="detail_dibayar" value="{{number_format($row->dibayar,0,',','.')}}" readonly required>
                                             <span class="text-danger" id="presentase_error"></span>
                                             <span class="text-success" id="presentase_info"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Diangsur</label>
+                                            <label for="exampleInputEmail1">Jumlah Pembayaran</label>
                                             <div class="input-group">
                                                 <input type="text" class="form-control" name="angsur" id="angsur"
                                                 value="{{$row->angsur}}" required>

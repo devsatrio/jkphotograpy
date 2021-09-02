@@ -186,16 +186,19 @@ class transaksiController extends Controller
     {
         if(($request->terbayar+str_replace('.','',$request->dibayar))>=$request->total){
             $status = 'Lunas';
+            $dibayar = $request->total;
         }else{
             $status = 'Belum Lunas';
+            $dibayar = $request->terbayar+str_replace('.','',$request->dibayar);
         }
+        $jumlahangsur = $request->angsuran+1;
         DB::table('transaksi')
         ->where('kode',$request->kode)
         ->update([
-            'dibayar'=>$request->terbayar+str_replace('.','',$request->dibayar),
+            'dibayar'=>$dibayar,
+            'angsur'=>$jumlahangsur,
             'status'=>$status,
         ]);
-        $jumlahangsur = $request->angsuran+1;
         DB::table('transaksi_log')
         ->insert([
             'kode_transaksi'=>$request->kode,
@@ -208,7 +211,7 @@ class transaksiController extends Controller
         DB::table('pembayaran')
         ->insert([
             'kode_transaksi'=>$request->kode,
-            'jumlah'=>str_replace('.','',$request->dibayar),
+            'jumlah'=>$dibayar,
             'keterangan'=>$request->keterangan,
             'tgl_bayar'=>$request->tglbayar,
             'created_at'=>date('Y-m-d H:i:s'),
@@ -300,8 +303,46 @@ class transaksiController extends Controller
         }
         if(str_replace('.','',$request->detail_dibayar)>=$request->detail_grand_total){
             $status = 'Lunas';
+            $dibayar = $request->detail_grand_total;
+            $diangsur = 1;
+            DB::table('transaksi_log')
+            ->insert([
+                'kode_transaksi'=>$request->kode,
+                'aksi'=>'pay',
+                'keterangan'=>'Menambahkan data pembayaran transaksi ke-1 Sekaligus Pelunasan',
+                'admin'=>Auth::user()->id,
+                'tgl'=>date('Y-m-d H:i:s')
+            ]);
+            DB::table('pembayaran')
+            ->insert([
+                'kode_transaksi'=>$request->kode,
+                'jumlah'=>$dibayar,
+                'keterangan'=>'Pembayaran pertama Sekaligus Pelunasan',
+                'tgl_bayar'=>date('Y-m-d H:i:s'),
+                'created_at'=>date('Y-m-d H:i:s'),
+                'created_by'=>Auth::user()->id,
+            ]);
         }else{
             $status = 'Belum Lunas';
+            $dibayar = str_replace('.','',$request->detail_dibayar);
+            $diangsur = $request->angsur;
+            DB::table('transaksi_log')
+            ->insert([
+                'kode_transaksi'=>$request->kode,
+                'aksi'=>'pay',
+                'keterangan'=>'Menambahkan data pembayaran transaksi ke-1 / DP',
+                'admin'=>Auth::user()->id,
+                'tgl'=>date('Y-m-d H:i:s')
+            ]);
+            DB::table('pembayaran')
+            ->insert([
+                'kode_transaksi'=>$request->kode,
+                'jumlah'=>$dibayar,
+                'keterangan'=>'Pembayaran pertama / DP',
+                'tgl_bayar'=>date('Y-m-d H:i:s'),
+                'created_at'=>date('Y-m-d H:i:s'),
+                'created_by'=>Auth::user()->id,
+            ]);
         }
         DB::table('transaksi')
         ->insert([
@@ -314,11 +355,11 @@ class transaksiController extends Controller
             'ppn'=>str_replace('.','',$request->detail_ppn),
             'charge'=>str_replace('.','',$request->detail_charge),
             'ket_charge'=>$request->ket_charge,
-            'dibayar'=>str_replace('.','',$request->detail_dibayar),
+            'dibayar'=>$dibayar,
             'total'=>$request->detail_grand_total,
             'status'=>$status,
             'laba'=>$totallaba,
-            'angsur'=>$request->angsur,
+            'angsur'=>$diangsur,
             'tgl_buat'=>$request->tgl,
             'created_at'=>date('Y-m-d H:i:s'),
             'created_by'=>Auth::user()->id,
@@ -331,23 +372,8 @@ class transaksiController extends Controller
             'admin'=>Auth::user()->id,
             'tgl'=>date('Y-m-d H:i:s')
         ]);
-        DB::table('transaksi_log')
-        ->insert([
-            'kode_transaksi'=>$request->kode,
-            'aksi'=>'pay',
-            'keterangan'=>'Menambahkan data pembayaran transaksi ke-1 / DP',
-            'admin'=>Auth::user()->id,
-            'tgl'=>date('Y-m-d H:i:s')
-        ]);
-        DB::table('pembayaran')
-        ->insert([
-            'kode_transaksi'=>$request->kode,
-            'jumlah'=>str_replace('.','',$request->detail_dibayar),
-            'keterangan'=>'Pembayaran pertama / DP',
-            'tgl_bayar'=>date('Y-m-d H:i:s'),
-            'created_at'=>date('Y-m-d H:i:s'),
-            'created_by'=>Auth::user()->id,
-        ]);
+        
+        
         DB::table('transaksi_detail')->insert($data);
         DB::table('transaksi_detail_thumb')->where('pembuat',Auth::user()->id)->delete();
     }

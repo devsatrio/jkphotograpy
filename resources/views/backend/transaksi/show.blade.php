@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Angsuran Pembayaran</label>
+                                        <label for="exampleInputEmail1">Jumlah Pembayaran</label>
                                         <p>{{$row->angsur}} Kali</p>
                                     </div>
                                 </div>

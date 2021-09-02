@@ -28,3 +28,8 @@ Route::get('/detail-transaksi/{kode}','backend\transaksicontroller@datatransaksi
 Route::get('/data-detail-transaksi/{kode}','backend\transaksicontroller@detailtransaksi');
 Route::get('/cari-detail-pricelist/{kode}','backend\transaksicontroller@caridetailpricelist');
 Route::resource('/transaksi','backend\transaksicontroller');
+
+//===================================================================================
+Route::get('/laporan-transaksi','backend\laporanTransaksiController@index');
+Route::get('/laporan-transaksi/tampil','backend\laporanTransaksiController@show');
+Route::get('/laporan-transaksi/export','backend\laporanTransaksiController@exportdata');

@@ -270,7 +270,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Diangsur</label>
+                                            <label for="exampleInputEmail1">Jumlah Pembayaran</label>
                                             <div class="input-group">
                                             <input type="text" class="form-control" name="angsur"
                                                 id="angsur" value="1" required>
