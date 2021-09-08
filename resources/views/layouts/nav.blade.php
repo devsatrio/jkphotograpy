@@ -15,7 +15,7 @@
         <a href="{{url('/laporan-transaksi')}}" class="nav-link">Laporan Transaksi</a>
     </li>
     <li class="nav-item">
-        <a href="{{url('/transaksi')}}" class="nav-link">Laporan Laba Rugi</a>
+        <a href="{{url('/laporan-labarugi')}}" class="nav-link">Laporan Laba Rugi</a>
     </li>
     <li class="nav-item dropdown">
         <!-- <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"

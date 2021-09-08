@@ -64,7 +64,7 @@
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">diskon</label>
                                                 <input type="text" class="form-control" name="diskon_prc"
-                                                    id="diskon_prc" required>
+                                                    id="diskon_prc" required readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-12">

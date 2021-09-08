@@ -20,16 +20,21 @@ Route::get('/data-pricelist','backend\priceListController@listdata');
 Route::resource('/pricelist','backend\priceListController');
 
 //===================================================================================
-Route::get('/cari-data-pricelist','backend\transaksicontroller@caripricelist');
-Route::post('/add-detail-transaksi','backend\transaksicontroller@tambahdetail');
-Route::post('/bayar-transaksi','backend\transaksicontroller@bayartransaksi');
-Route::post('/hapus-detail-transaksi','backend\transaksicontroller@hapusdetail');
-Route::get('/detail-transaksi/{kode}','backend\transaksicontroller@datatransaksi');
-Route::get('/data-detail-transaksi/{kode}','backend\transaksicontroller@detailtransaksi');
-Route::get('/cari-detail-pricelist/{kode}','backend\transaksicontroller@caridetailpricelist');
-Route::resource('/transaksi','backend\transaksicontroller');
+Route::get('/cari-data-pricelist','backend\transaksiController@caripricelist');
+Route::post('/add-detail-transaksi','backend\transaksiController@tambahdetail');
+Route::post('/bayar-transaksi','backend\transaksiController@bayartransaksi');
+Route::post('/hapus-detail-transaksi','backend\transaksiController@hapusdetail');
+Route::get('/detail-transaksi/{kode}','backend\transaksiController@datatransaksi');
+Route::get('/data-detail-transaksi/{kode}','backend\transaksiController@detailtransaksi');
+Route::get('/cari-detail-pricelist/{kode}','backend\transaksiController@caridetailpricelist');
+Route::resource('/transaksi','backend\transaksiController');
 
 //===================================================================================
 Route::get('/laporan-transaksi','backend\laporanTransaksiController@index');
 Route::get('/laporan-transaksi/tampil','backend\laporanTransaksiController@show');
 Route::get('/laporan-transaksi/export','backend\laporanTransaksiController@exportdata');
+
+//===================================================================================
+Route::get('/laporan-labarugi','backend\laporanLabaRugiController@index');
+Route::get('/laporan-labarugi/tampil','backend\laporanLabaRugiController@show');
+Route::get('/laporan-labarugi/export','backend\laporanLabaRugiController@exportdata');

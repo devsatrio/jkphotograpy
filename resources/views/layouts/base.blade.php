@@ -19,7 +19,7 @@
         <nav class="main-header navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
                 <a href="#" class="navbar-brand">
-                    <span class="brand-text font-weight-light">BL6 Basic</span>
+                    <span class="brand-text font-weight-light">JKPhotography</span>
                 </a>
                 <button class="navbar-toggler order-1" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
