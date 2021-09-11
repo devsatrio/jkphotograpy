@@ -208,12 +208,24 @@ class transaksiController extends Controller
             'tgl'=>date('Y-m-d H:i:s')
         ]);
 
+        $finalname ='gambar_kosong';
+        if($request->hasFile('bts')){
+            $nameland=$request->file('bts')->getClientOriginalname();
+            $lower_file_name=strtolower($nameland);
+            $replace_space=str_replace(' ', '-', $lower_file_name);
+            $finalname=time().'-'.$replace_space;
+            $destination=public_path('img/buktibayar');
+            $request->file('bts')->move($destination,$finalname);
+        }
+
         DB::table('pembayaran')
         ->insert([
             'kode_transaksi'=>$request->kode,
             'jumlah'=>$dibayar,
             'keterangan'=>$request->keterangan,
             'tgl_bayar'=>$request->tglbayar,
+            'gambar'=>$finalname,
+            'metode'=>$request->metode_bayar,
             'created_at'=>date('Y-m-d H:i:s'),
             'created_by'=>Auth::user()->id,
         ]);
@@ -301,6 +313,15 @@ class transaksiController extends Controller
                 'lokasi'=>$row->lokasi,
             ];
         }
+        $finalname ='gambar_kosong';
+        if($request->hasFile('bts')){
+            $nameland=$request->file('bts')->getClientOriginalname();
+            $lower_file_name=strtolower($nameland);
+            $replace_space=str_replace(' ', '-', $lower_file_name);
+            $finalname=time().'-'.$replace_space;
+            $destination=public_path('img/buktibayar');
+            $request->file('bts')->move($destination,$finalname);
+        }
         if(str_replace('.','',$request->detail_dibayar)>=$request->detail_grand_total){
             $status = 'Lunas';
             $dibayar = $request->detail_grand_total;
@@ -319,6 +340,8 @@ class transaksiController extends Controller
                 'jumlah'=>$dibayar,
                 'keterangan'=>'Pembayaran pertama Sekaligus Pelunasan',
                 'tgl_bayar'=>date('Y-m-d H:i:s'),
+                'gambar'=>$finalname,
+                'metode'=>$request->metode_bayar,
                 'created_at'=>date('Y-m-d H:i:s'),
                 'created_by'=>Auth::user()->id,
             ]);
@@ -340,6 +363,8 @@ class transaksiController extends Controller
                 'jumlah'=>$dibayar,
                 'keterangan'=>'Pembayaran pertama / DP',
                 'tgl_bayar'=>date('Y-m-d H:i:s'),
+                'gambar'=>$finalname,
+                'metode'=>$request->metode_bayar,
                 'created_at'=>date('Y-m-d H:i:s'),
                 'created_by'=>Auth::user()->id,
             ]);

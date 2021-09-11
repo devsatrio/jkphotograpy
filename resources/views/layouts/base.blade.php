@@ -4,12 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @yield('token')
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     @yield('customcss')
+    @php
+    $datasetting = DB::table('setting')->orderby('id','desc')->limit(1)->get();
+    @endphp
+    @foreach($datasetting as $rowset)
+    <meta name="description" content="{{$rowset->meta}}">
+    <title>{{$rowset->nama_apps}} || admin</title>
+    @endforeach
     <link rel="stylesheet" href="{{asset('assets/dist/css/adminlte.min.css')}}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -18,8 +24,15 @@
     <div class="wrapper">
         <nav class="main-header navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
-                <a href="#" class="navbar-brand">
-                    <span class="brand-text font-weight-light">JKPhotography</span>
+                <a href="{{url('home')}}" class="navbar-brand">
+                    @php
+                    $datasetting = DB::table('setting')->orderby('id','desc')->limit(1)->get();
+                    @endphp
+                    @foreach($datasetting as $rowset)
+                    <img src="{{asset('img/setting/'.$rowset->logo)}}" alt="logo"
+                        class="brand-image img-circle elevation-3" style="opacity: .8">
+                    <span class="brand-text font-weight-light">{{$rowset->nama_apps}}</span>
+                    @endforeach
                 </a>
                 <button class="navbar-toggler order-1" type="button" data-toggle="collapse"
                     data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
@@ -64,24 +77,24 @@
                                 class="fas fa-th-large"></i></a>
                     </li> -->
                     <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-user"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="{{route('editprofile')}}" class="dropdown-item">
-                            Edit Profile
+                        <a class="nav-link" data-toggle="dropdown" href="#">
+                            <i class="far fa-user"></i>
                         </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <a href="{{route('editprofile')}}" class="dropdown-item">
+                                Edit Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
-                            class="dropdown-item">
-                            Logout
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
+                                class="dropdown-item">
+                                Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>

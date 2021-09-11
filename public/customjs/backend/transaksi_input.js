@@ -207,14 +207,14 @@ function formatRupiahkeyup(angka) {
 }
 
 //===============================================================================================
-function hapusdetail(id){
+function hapusdetail(id) {
     $('#paneldua').loading('toggle');
     $.ajax({
         type: 'POST',
         url: '/hapus-detail-transaksi',
         data: {
             '_token': $('input[name=_token]').val(),
-            'kode':id,
+            'kode': id,
         },
         success: function () {
             getdata();
@@ -249,99 +249,207 @@ detail_dibayar.addEventListener('keyup', function (e) {
 });
 
 //===============================================================================================
-function hitungtotaldetail(){
-    if($('#detail_subtotal').val()==''){
-        var detail_subtotal =0;
-    }else{
-        var detail_subtotal=parseInt($('#detail_subtotal').val());
+function hitungtotaldetail() {
+    if ($('#detail_subtotal').val() == '') {
+        var detail_subtotal = 0;
+    } else {
+        var detail_subtotal = parseInt($('#detail_subtotal').val());
     }
-    if($('#detail_charge').val()==''){
-        var detail_charge =0;
-    }else{
-        var detail_charge=parseInt($('#detail_charge').val().replace(/\./g, ''));
+    if ($('#detail_charge').val() == '') {
+        var detail_charge = 0;
+    } else {
+        var detail_charge = parseInt($('#detail_charge').val().replace(/\./g, ''));
     }
-    if($('#detail_potongan').val()==''){
-        var detail_potongan =0;
-    }else{
-        var detail_potongan=parseInt($('#detail_potongan').val().replace(/\./g, ''));
+    if ($('#detail_potongan').val() == '') {
+        var detail_potongan = 0;
+    } else {
+        var detail_potongan = parseInt($('#detail_potongan').val().replace(/\./g, ''));
     }
-    if($('#detail_ppn').val()==''){
-        var detail_ppn =0;
-    }else{
-        var detail_ppn=parseInt($('#detail_ppn').val().replace(/\./g, ''));
+    if ($('#detail_ppn').val() == '') {
+        var detail_ppn = 0;
+    } else {
+        var detail_ppn = parseInt($('#detail_ppn').val().replace(/\./g, ''));
     }
 
-    if($('#detail_dibayar').val()==''){
-        var detail_dibayar =0;
-    }else{
-        var detail_dibayar=parseInt($('#detail_dibayar').val().replace(/\./g, ''));
+    if ($('#detail_dibayar').val() == '') {
+        var detail_dibayar = 0;
+    } else {
+        var detail_dibayar = parseInt($('#detail_dibayar').val().replace(/\./g, ''));
     }
-    var totalnya =parseInt(detail_subtotal)+parseInt(detail_charge)-parseInt(detail_potongan)+parseInt(detail_ppn);
-    var presentase = Math.round((parseInt(detail_dibayar)/parseInt(totalnya))*100);
-    if($('#detail_dibayar').val()!=''){
-        if(presentase<20){
+    var totalnya = parseInt(detail_subtotal) + parseInt(detail_charge) - parseInt(detail_potongan) + parseInt(detail_ppn);
+    var presentase = Math.round((parseInt(detail_dibayar) / parseInt(totalnya)) * 100);
+    if ($('#detail_dibayar').val() != '') {
+        if (presentase < 20) {
             $('#presentase_error').html('Maaf, pembayaran pertama minimal 20%');
             $('#presentase_info').html('');
-        }else{
-            $('#presentase_info').html('Dibayar sebanyak '+presentase+'%');
+        } else {
+            $('#presentase_info').html('Dibayar sebanyak ' + presentase + '%');
             $('#presentase_error').html('');
         }
-    }else{
+    } else {
         $('#presentase_info').html('');
         $('#presentase_error').html('');
     }
-    $('#detail_grand_total').val(parseInt(detail_subtotal)+parseInt(detail_charge)-parseInt(detail_potongan)+parseInt(detail_ppn));
-    $('#tampil_subtotal').html('Rp '+rupiah(detail_subtotal));
-    $('#tampil_charge').html('Rp '+rupiah(detail_charge));
-    $('#tampil_potongan').html('Rp '+rupiah(detail_potongan));
-    $('#tampil_ppn').html('Rp '+rupiah(detail_ppn));
-    $('#tampil_grand_total').html('Rp '+rupiah(parseInt(detail_subtotal)+parseInt(detail_charge)-parseInt(detail_potongan)+parseInt(detail_ppn)));
-    $('#tampil_dibayar').html('Rp '+rupiah(detail_dibayar));
-    $('#tampil_kekurangan').html('Rp '+rupiah((parseInt(detail_subtotal)+parseInt(detail_charge)-parseInt(detail_potongan)+parseInt(detail_ppn))-parseInt(detail_dibayar)));
+    $('#detail_grand_total').val(parseInt(detail_subtotal) + parseInt(detail_charge) - parseInt(detail_potongan) + parseInt(detail_ppn));
+    $('#tampil_subtotal').html('Rp ' + rupiah(detail_subtotal));
+    $('#tampil_charge').html('Rp ' + rupiah(detail_charge));
+    $('#tampil_potongan').html('Rp ' + rupiah(detail_potongan));
+    $('#tampil_ppn').html('Rp ' + rupiah(detail_ppn));
+    $('#tampil_grand_total').html('Rp ' + rupiah(parseInt(detail_subtotal) + parseInt(detail_charge) - parseInt(detail_potongan) + parseInt(detail_ppn)));
+    $('#tampil_dibayar').html('Rp ' + rupiah(detail_dibayar));
+    $('#tampil_kekurangan').html('Rp ' + rupiah((parseInt(detail_subtotal) + parseInt(detail_charge) - parseInt(detail_potongan) + parseInt(detail_ppn)) - parseInt(detail_dibayar)));
 }
 
 //========================================================================================
-$('#simpanbtn').on('click',function(e){
-    if($('#kode').val()==''||$('#tgl').val()==''||$('#nama').val()==''||$('#telp').val()==''||$('#alamat').val()==''||$('#detail_potongan').val()==''||$('#detail_ppn').val()==''||$('#detail_charge').val()==''||$('#detail_dibayar').val()==''||$('#angsur').val()==''||$('#tubuhnya').html()==''){
+$('#metode_bayar').on('change', function () {
+    if (this.value == 'Transfer') {
+        $("#bts").prop('required', true);
+    } else {
+        $("#bts").prop('required', false);
+    }
+});
+
+//========================================================================================
+$('#simpanbtn').on('click', function (e) {
+    if ($('#kode').val() == '' || $('#tgl').val() == '' || $('#nama').val() == '' || $('#telp').val() == '' || $('#alamat').val() == '' || $('#detail_potongan').val() == '' || $('#detail_ppn').val() == '' || $('#detail_charge').val() == '' || $('#detail_dibayar').val() == '' || $('#angsur').val() == '' || $('#tubuhnya').html() == '') {
         swalWithBootstrapButtons.fire({
             title: 'Oops',
             text: 'Detail permintaan tidak boleh kosog',
             confirmButtonText: 'OK'
-          });
-    }else{
-        $('#paneldua').loading('toggle');
-        $.ajax({
-            type: 'POST',
-            url: '/transaksi',
-            data: {
-                '_token': $('input[name=_token]').val(),
-                'kode':$('#kode').val(),
-                'tgl':$('#tgl').val(),
-                'nama':$('#nama').val(),
-                'telp':$('#telp').val(),
-                'alamat':$('#alamat').val(),
-                'detail_subtotal':$('#detail_subtotal').val(),
-                'detail_potongan':$('#detail_potongan').val(),
-                'detail_ppn':$('#detail_ppn').val(),
-                'detail_charge':$('#detail_charge').val(),
-                'detail_dibayar':$('#detail_dibayar').val(),
-                'detail_grand_total':$('#detail_grand_total').val(),
-                'angsur':$('#angsur').val(),
-                'ket_charge':$('#ket_charge').val(),
-            },
-            success: function () {
+        });
+        return false;
+    } else {
+        if ($('#metode_bayar').val() == 'Transfer') {
+            if ($('#bts').val() == '') {
                 swalWithBootstrapButtons.fire({
-                    title: 'Info',
-                    text: 'Data Berhasil disimpan',
+                    title: 'Oops',
+                    text: 'Bukti Transfer/Pembayaran tidak boleh kosong',
                     confirmButtonText: 'OK'
-                  }).then((result) => {
-                    if (result.value) {
-                        window.location.replace('/transaksi');
+                });
+                return false;
+            } else {
+                $('#paneldua').loading('toggle');
+                $('#addtransaksi').on('submit', function (e) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('input[name=_token]').val()
+                        }
+                    });
+                    var formData = new FormData(this);
+                    $.ajax({
+                        url: '/transaksi',
+                        type: 'POST',
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function () {
+                            swalWithBootstrapButtons.fire({
+                                title: 'Info',
+                                text: 'Data Berhasil disimpan',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.value) {
+                                    window.location.replace('/transaksi');
+                                }
+                            });
+                        }, complete: function () {
+                            $('#paneldua').loading('stop');
+                        }
+                    });
+                });
+            }
+        } else {
+            $('#paneldua').loading('toggle');
+            $('#addtransaksi').on('submit', function (e) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('input[name=_token]').val()
                     }
                 });
-            }, complete: function () {
-                $('#paneldua').loading('stop');
-            }
-        });
+                var formData = new FormData(this);
+                $.ajax({
+                    url: '/transaksi',
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function () {
+                        swalWithBootstrapButtons.fire({
+                            title: 'Info',
+                            text: 'Data Berhasil disimpan',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location.replace('/transaksi');
+                            }
+                        });
+                    }, complete: function () {
+                        $('#paneldua').loading('stop');
+                    }
+                });
+            });
+        }
+
+        // $.ajax({
+        //     type: 'POST',
+        //     url: '/transaksi',
+        //     data: {
+        //         '_token': $('input[name=_token]').val(),
+        //         'kode':$('#kode').val(),
+        //         'tgl':$('#tgl').val(),
+        //         'nama':$('#nama').val(),
+        //         'telp':$('#telp').val(),
+        //         'alamat':$('#alamat').val(),
+        //         'detail_subtotal':$('#detail_subtotal').val(),
+        //         'detail_potongan':$('#detail_potongan').val(),
+        //         'detail_ppn':$('#detail_ppn').val(),
+        //         'detail_charge':$('#detail_charge').val(),
+        //         'detail_dibayar':$('#detail_dibayar').val(),
+        //         'detail_grand_total':$('#detail_grand_total').val(),
+        //         'angsur':$('#angsur').val(),
+        //         'ket_charge':$('#ket_charge').val(),
+        //     },
+        //     success: function () {
+        //         swalWithBootstrapButtons.fire({
+        //             title: 'Info',
+        //             text: 'Data Berhasil disimpan',
+        //             confirmButtonText: 'OK'
+        //           }).then((result) => {
+        //             if (result.value) {
+        //                 window.location.replace('/transaksi');
+        //             }
+        //         });
+        //     }, complete: function () {
+        //         $('#paneldua').loading('stop');
+        //     }
+        // });
+    }
+});
+
+//========================================================================================
+$('#bts').on('change', function () {
+    var imageSizeArr = 0;
+    var imageSize = document.getElementById('bts');
+    var jumlah = 0;
+    for (var i = 0; i < imageSize.files.length; i++) {
+        jumlah += 1;
+        var imageSiz = imageSize.files[i].size;
+        var imagename = imageSize.files[i].name;
+        if (imageSiz > 1300000) {
+            var imageSizeArr = 1;
+        }
+        if (imageSizeArr == 1) {
+            Swal.fire({
+                title: 'Maaf',
+                text: 'Maaf, File "' + imagename + '" terlalu besar / memiliki ukuran lebih dari 1MB'
+            })
+            $('#bts').val('');
+        }
     }
 });

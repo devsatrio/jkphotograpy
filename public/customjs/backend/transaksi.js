@@ -37,6 +37,15 @@ function hapusdata(kode) {
 }
 
 //===============================================================================================
+$('#metode_bayar').on('change', function() {
+    if(this.value=='Cash'){
+        $("#bts").prop('required',false);
+    }else{
+        $("#bts").prop('required',true);
+    }
+  });
+
+//===============================================================================================
 function pembayaran(kode) {
     $('#panelsatu').loading('toggle');
     $.ajax({
@@ -47,7 +56,7 @@ function pembayaran(kode) {
                 $('#tampil_kode').html(value.kode);
                 $('#tampil_kekurangan').html('Rp '+rupiah(parseInt(value.total)-parseInt(value.dibayar)));
                 $('#tampil_dibayar').html('Rp '+rupiah(value.dibayar));
-                $('#tampil_angsuran').html(data.totalangsuran+'/'+value.angsur);
+                $('#tampil_angsuran').html(data.totalangsuran+1+'/'+value.angsur);
                 $('#kode').val(value.kode);
                 $('#terbayar').val(value.dibayar);
                 $('#total').val(value.total);
@@ -97,3 +106,25 @@ function formatRupiahkeyup(angka) {
     rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
     return rupiah;
 }
+
+//========================================================================================
+$('#bts').on('change', function () {
+    var imageSizeArr = 0;
+    var imageSize = document.getElementById('bts');
+    var jumlah = 0;
+    for (var i = 0; i < imageSize.files.length; i++) {
+        jumlah += 1;
+        var imageSiz = imageSize.files[i].size;
+        var imagename = imageSize.files[i].name;
+        if (imageSiz > 1300000) {
+            var imageSizeArr = 1;
+        }
+        if (imageSizeArr == 1) {
+            Swal.fire({
+                title: 'Maaf',
+                text: 'Maaf, File "' + imagename + '" terlalu besar / memiliki ukuran lebih dari 1MB'
+            })
+            $('#bts').val('');
+        }
+    }
+});

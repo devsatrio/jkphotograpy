@@ -113,184 +113,202 @@
                             <div class="card-header">
                                 <h3 class="card-title">Detail Transaksi</h3>
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Kode Transaksi</label>
-                                            <input type="text" class="form-control" value="{{$kode}}" name="kode"
-                                                id="kode" value="" required readonly>
+                            <form id="addtransaksi" enctype="multipart/form-data">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Kode Transaksi</label>
+                                                <input type="text" class="form-control" value="{{$kode}}" name="kode"
+                                                    id="kode" value="" required readonly>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Tanggal Pembuatan</label>
-                                            <input type="text" class="form-control" name="tgl" id="tgl" required>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Nama Customer</label>
-                                            <input type="text" class="form-control" name="nama" id="nama" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Telp Customer</label>
-                                            <input type="text" class="form-control" name="telp" id="telp" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Alamat Customer</label>
-                                    <textarea name="alamat" id="alamat" class="form-control"></textarea>
-                                </div>
-                                <div class="table-responsive mb-5">
-                                    <table class="table table-bordered table-striped mt-5">
-                                        <thead>
-                                            <tr>
-                                                <th>Paket</th>
-                                                <th>Tanggal Acara</th>
-                                                <th>Lokasi</th>
-                                                <th class="text-right">Harga</th>
-                                                <th class="text-center">Diskon</th>
-                                                <th class="text-right">Total Harga</th>
-                                                <th class="text-center">#</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tubuhnya">
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4 offset-md-8">
-                                        <table width="100%5">
-                                            <tr>
-                                                <td>
-                                                    <h5>Subtotal</h5>
-                                                </td>
-                                                <td></td>
-                                                <td class="text-right">
-                                                    <h5><b><span id="tampil_subtotal"></span></b></h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5>Charge</h5>
-                                                </td>
-                                                <td></td>
-                                                <td class="text-right">
-                                                    <h5><b><span id="tampil_charge"></span></b></h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5>Potongan</h5>
-                                                </td>
-                                                <td></td>
-                                                <td class="text-right">
-                                                    <h5><b><span id="tampil_potongan"></span></b></h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h5>PPN</h5>
-                                                </td>
-                                                <td></td>
-                                                <td class="text-right">
-                                                    <h5><b><span id="tampil_ppn"></span></b></h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h4>Grand Total</h4>
-                                                </td>
-                                                <td></td>
-                                                <td class="text-right">
-                                                    <h5><b><span id="tampil_grand_total"></span></b></h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h4>Dibayar</h4>
-                                                </td>
-                                                <td></td>
-                                                <td class="text-right">
-                                                    <h5><b><span id="tampil_dibayar"></span></b></h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h4>Kekurangan</h4>
-                                                </td>
-                                                <td></td>
-                                                <td class="text-right">
-                                                    <h5><b><span id="tampil_kekurangan"></span></b></h5>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <input type="hidden" name="detail_subtotal" id="detail_subtotal">
-                                        <input type="hidden" name="detail_grand_total" id="detail_grand_total">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Potongan</label>
-                                            <input type="text" class="form-control" name="detail_potongan"
-                                                id="detail_potongan" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">PPN</label>
-                                            <input type="text" class="form-control" name="detail_ppn"
-                                                id="detail_ppn" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Charge</label>
-                                            <input type="text" class="form-control" name="detail_charge"
-                                                id="detail_charge" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Dibayar</label>
-                                            <input type="text" class="form-control" name="detail_dibayar"
-                                                id="detail_dibayar" required>
-                                                <span class="text-danger" id="presentase_error"></span>
-                                                <span class="text-success" id="presentase_info"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Jumlah Pembayaran</label>
-                                            <div class="input-group">
-                                            <input type="text" class="form-control" name="angsur"
-                                                id="angsur" value="1" required>
-                                                <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon1">Kali</span>
-                                                    </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Tanggal Pembuatan</label>
+                                                <input type="text" class="form-control" name="tgl" id="tgl" required>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Keterangan Charge</label>
-                                            <textarea name="ket_charge" id="ket_charge" class="form-control"></textarea>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Nama Customer</label>
+                                                <input type="text" class="form-control" name="nama" id="nama" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Telp Customer</label>
+                                                <input type="text" class="form-control" name="telp" id="telp" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Alamat Customer</label>
+                                        <textarea name="alamat" id="alamat" class="form-control"></textarea>
+                                    </div>
+                                    <div class="table-responsive mb-5">
+                                        <table class="table table-bordered table-striped mt-5">
+                                            <thead>
+                                                <tr>
+                                                    <th>Paket</th>
+                                                    <th>Tanggal Acara</th>
+                                                    <th>Lokasi</th>
+                                                    <th class="text-right">Harga</th>
+                                                    <th class="text-center">Diskon</th>
+                                                    <th class="text-right">Total Harga</th>
+                                                    <th class="text-center">#</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tubuhnya">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 offset-md-8">
+                                            <table width="100%5">
+                                                <tr>
+                                                    <td>
+                                                        <h5>Subtotal</h5>
+                                                    </td>
+                                                    <td></td>
+                                                    <td class="text-right">
+                                                        <h5><b><span id="tampil_subtotal"></span></b></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h5>Charge</h5>
+                                                    </td>
+                                                    <td></td>
+                                                    <td class="text-right">
+                                                        <h5><b><span id="tampil_charge"></span></b></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h5>Potongan</h5>
+                                                    </td>
+                                                    <td></td>
+                                                    <td class="text-right">
+                                                        <h5><b><span id="tampil_potongan"></span></b></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h5>PPN</h5>
+                                                    </td>
+                                                    <td></td>
+                                                    <td class="text-right">
+                                                        <h5><b><span id="tampil_ppn"></span></b></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Grand Total</h4>
+                                                    </td>
+                                                    <td></td>
+                                                    <td class="text-right">
+                                                        <h5><b><span id="tampil_grand_total"></span></b></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Dibayar</h4>
+                                                    </td>
+                                                    <td></td>
+                                                    <td class="text-right">
+                                                        <h5><b><span id="tampil_dibayar"></span></b></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <h4>Kekurangan</h4>
+                                                    </td>
+                                                    <td></td>
+                                                    <td class="text-right">
+                                                        <h5><b><span id="tampil_kekurangan"></span></b></h5>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="hidden" name="detail_subtotal" id="detail_subtotal">
+                                            <input type="hidden" name="detail_grand_total" id="detail_grand_total">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Potongan</label>
+                                                <input type="text" class="form-control" name="detail_potongan"
+                                                    id="detail_potongan" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">PPN</label>
+                                                <input type="text" class="form-control" name="detail_ppn"
+                                                    id="detail_ppn" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Charge</label>
+                                                <input type="text" class="form-control" name="detail_charge"
+                                                    id="detail_charge" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Dibayar</label>
+                                                <input type="text" class="form-control" name="detail_dibayar"
+                                                    id="detail_dibayar" required>
+                                                <span class="text-danger" id="presentase_error"></span>
+                                                <span class="text-success" id="presentase_info"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Jumlah Pembayaran</label>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" name="angsur" id="angsur"
+                                                        value="1" required>
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1">Kali</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Keterangan Charge</label>
+                                                <textarea name="ket_charge" id="ket_charge"
+                                                    class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Metode Pembayaran</label>
+                                                <select name="metode_bayar" id="metode_bayar" class="form-control">
+                                                    <option value="Transfer">Transfer</option>
+                                                    <option value="Cash">Cash</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Bukti Transfer/Pembayaran</label>
+                                                <input type="file" class="form-control" name="bts" id="bts" accept="image/*">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button" id="simpanbtn" class="btn btn-success float-right">Simpan</button>
-                            </div>
+                                <div class="card-footer">
+                                    <button type="submit" id="simpanbtn"
+                                        class="btn btn-success float-right">Simpan</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

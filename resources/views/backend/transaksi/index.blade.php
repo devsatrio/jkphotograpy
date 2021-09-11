@@ -53,13 +53,13 @@
                                 <label for="">Cari Data Berdasarkan</label><br>
                                 <form action="" method="get">
                                     <div class="row mb-3">
-                                        <div class="col-md-4">
+                                        <div class="col-md-4 mt-3">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" name="search"
                                                     placeholder="Cari Berdasarkan Kode / customer">
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 mt-3">
                                             <div class="input-group">
                                                 <select name="status" class="form-control">
                                                     <option value="" selected>Pilih Status</option>
@@ -68,7 +68,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-5 mt-3">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" name="tanggal" id="tanggal">
                                                 <div class="input-group-append">
@@ -186,51 +186,62 @@
             </div>
             <form action="{{url('bayar-transaksi')}}" method="post">
                 @csrf
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Dibayar</label>
-                            <p id="tampil_dibayar"></p>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Dibayar</label>
+                                <p id="tampil_dibayar"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Kekurangan</label>
+                                <p id="tampil_kekurangan"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Pembayaran Ke</label>
+                                <p id="tampil_angsuran"></p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Kekurangan</label>
-                            <p id="tampil_kekurangan"></p>
-                        </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Dibayar</label>
+                        <input type="text" class="form-control" name="dibayar" id="dibayar" required>
+                        <input type="hidden" name="kode" id="kode">
+                        <input type="hidden" name="terbayar" id="terbayar">
+                        <input type="hidden" name="angsuran" id="angsuran">
+                        <input type="hidden" name="total" id="total">
+                        <span class="text-muted">*Jangan menginputkan lebih dari jumlah kekurangan</span>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Angsuran Ke</label>
-                            <p id="tampil_angsuran"></p>
-                        </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Metode Pembayaran</label>
+                        <select name="metode_bayar" id="metode_bayar" class="form-control">
+                            <option value="Transfer">Transfer</option>
+                            <option value="Cash">Cash</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Bukti Transfer/Pembayaran</label>
+                        <input type="file" class="form-control" name="bts" id="bts" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Keterangan</label>
+                        <textarea name="keterangan" id="keterangan" class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tgl Bayar</label>
+                        <input type="text" class="form-control" value="{{date('Y-m-d H:i:s')}}" name="tglbayar"
+                            id="tglbayar" required>
                     </div>
                 </div>
-                <hr>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Dibayar</label>
-                    <input type="text" class="form-control" name="dibayar" id="dibayar" required>
-                    <input type="hidden" name="kode" id="kode">
-                    <input type="hidden" name="terbayar" id="terbayar">
-                    <input type="hidden" name="angsuran" id="angsuran">
-                    <input type="hidden" name="total" id="total">
-                    <span class="text-muted">*Jangan menginputkan lebih dari jumlah kekurangan</span>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Keterangan</label>
-                    <textarea name="keterangan" id="keterangan" class="form-control" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Tgl Bayar</label>
-                    <input type="text" class="form-control" value="{{date('Y-m-d H:i:s')}}" name="tglbayar"
-                        id="tglbayar" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
             </form>
         </div>
     </div>

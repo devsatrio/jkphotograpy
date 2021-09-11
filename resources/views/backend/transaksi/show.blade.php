@@ -19,7 +19,7 @@
         <div class="pr-4 pl-4">
             @foreach($data as $row)
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <div class="card card-info">
                         <div class="card-header">
                             <h3 class="card-title">Detail Data</h3>
@@ -186,7 +186,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="card card-info">
                         <div class="card-header">
                             <h3 class="card-title">History Transaksi</h3>
@@ -246,9 +246,11 @@
                                     <thead>
                                         <tr>
                                             <th>keterangan</th>
+                                            <th>Metode</th>
                                             <th>Jumlah</th>
                                             <th>Pembuat</th>
                                             <th>Tgl Bayar</th>
+                                            <th>#</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -263,13 +265,20 @@
                                         @foreach($pembayaran as $pm)
                                         <tr>
                                             <td>{{$pm->keterangan}}</td>
+                                            <td>{{$pm->metode}}</td>
                                             <td class="text-right">
                                                 {{"Rp " . number_format($pm->jumlah,0,',','.')}}</td>
                                             <td>{{$pm->name}}</td>
                                             <td>{{$pm->tgl_bayar}}</td>
+                                            <td class="text-center">
+                                                @if($pm->gambar!='gambar_kosong')
+                                                <a href="{{asset('img/buktibayar/'.$pm->gambar)}}" target="blank()" class="btn btn-sm btn-secondary"><i class="fas fa-image"></i></a>
+                                                @else
+                                                -
+                                                @endif
+                                            </td>
                                         </tr>
                                         @endforeach
-                                        
                                     </tbody>
                                 </table>
                             </div>

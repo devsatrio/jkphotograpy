@@ -3,10 +3,14 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'verify' => false,
+  ]);
 Route::get('/home', 'backend\HomeController@index')->name('home');
 Route::get('/edit-profile', 'backend\HomeController@editprofile')->name('editprofile');
 Route::post('/edit-profile/{id}', 'backend\HomeController@aksieditprofile');
@@ -38,3 +42,7 @@ Route::get('/laporan-transaksi/export','backend\laporanTransaksiController@expor
 Route::get('/laporan-labarugi','backend\laporanLabaRugiController@index');
 Route::get('/laporan-labarugi/tampil','backend\laporanLabaRugiController@show');
 Route::get('/laporan-labarugi/export','backend\laporanLabaRugiController@exportdata');
+
+//===================================================================================
+Route::get('/setting','backend\settingWebController@index');
+Route::post('/setting','backend\settingWebController@update');

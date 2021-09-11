@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2021 at 04:42 PM
+-- Generation Time: Sep 11, 2021 at 04:16 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.13
 
@@ -82,6 +82,8 @@ CREATE TABLE `pembayaran` (
   `jumlah` int(11) DEFAULT NULL,
   `keterangan` text DEFAULT NULL,
   `tgl_bayar` datetime DEFAULT NULL,
+  `gambar` text DEFAULT NULL,
+  `metode` varchar(50) DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -90,16 +92,12 @@ CREATE TABLE `pembayaran` (
 -- Dumping data for table `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`id`, `kode_transaksi`, `jumlah`, `keterangan`, `tgl_bayar`, `created_by`, `created_at`) VALUES
-(9, 'TRX-VIII-21-001', 1500000, 'Pembayaran pertama / DP', '2021-08-29 20:16:07', 1, '2021-08-29 20:16:07'),
-(10, 'TRX-VIII-21-001', 2000000, 'pembayaran ke dua', '2021-08-29 07:51:00', 1, '2021-08-30 07:51:57'),
-(11, 'TRX-VIII-21-002', 1500000, 'Pembayaran pertama / DP', '2021-08-30 08:04:46', 1, '2021-08-30 08:04:46'),
-(12, 'TRX-VIII-21-002', 2000000, 'Pembayaran kedua', '2021-08-29 18:05:00', 1, '2021-08-30 08:05:56'),
-(13, 'TRX-VIII-21-002', 1895000, 'Pelunasan', '2021-08-30 08:05:00', 1, '2021-08-30 08:06:39'),
-(14, 'TRX-IX-21-001', 500000, 'Pembayaran pertama / DP', '2021-09-01 20:17:33', 1, '2021-09-01 20:17:33'),
-(15, 'TRX-IX-21-002', 3600000, 'Pembayaran pertama Sekaligus Pelunasan', '2021-09-01 20:19:32', 1, '2021-09-01 20:19:32'),
-(16, 'TRX-IX-21-001', 2000000, 'Pelunasan', '2021-09-01 20:23:00', 1, '2021-09-01 20:23:31'),
-(17, 'TRX-IX-21-001', 2050000, 'Bayar Charge', '2021-09-01 20:24:00', 1, '2021-09-01 20:25:06');
+INSERT INTO `pembayaran` (`id`, `kode_transaksi`, `jumlah`, `keterangan`, `tgl_bayar`, `gambar`, `metode`, `created_by`, `created_at`) VALUES
+(26, 'TRX-IX-21-001', 1000000, 'Pembayaran pertama / DP', '2021-09-11 17:57:54', '1631357874-pengurutan.jpg', NULL, 1, '2021-09-11 17:57:54'),
+(27, 'TRX-IX-21-002', 2000000, 'Pembayaran pertama / DP', '2021-09-11 18:17:44', 'gambar_kosong', 'Transfer', 1, '2021-09-11 18:17:44'),
+(28, 'TRX-IX-21-003', 2000000, 'Pembayaran pertama / DP', '2021-09-11 18:23:15', '1631359395-ss_repo.png', 'Transfer', 1, '2021-09-11 18:23:15'),
+(29, 'TRX-IX-21-003', 3710000, 'pembayaran kedua', '2021-09-11 18:42:00', 'gambar_kosong', 'Cash', 1, '2021-09-11 18:43:23'),
+(30, 'TRX-IX-21-002', 3500000, 'asdfsadf', '2021-09-11 18:43:00', 'gambar_kosong', 'Transfer', 1, '2021-09-11 18:44:08');
 
 -- --------------------------------------------------------
 
@@ -117,6 +115,9 @@ CREATE TABLE `pricelist` (
   `box` int(11) DEFAULT 0,
   `duavg` int(11) DEFAULT 0,
   `satuvg` int(11) DEFAULT 0,
+  `jumlah_vg` int(11) DEFAULT NULL,
+  `jumlah_pg` int(11) DEFAULT NULL,
+  `jumlah_as` int(11) DEFAULT NULL,
   `asisten` int(11) DEFAULT 0,
   `editor` int(11) DEFAULT 0,
   `transport` int(11) DEFAULT 0,
@@ -134,10 +135,39 @@ CREATE TABLE `pricelist` (
 -- Dumping data for table `pricelist`
 --
 
-INSERT INTO `pricelist` (`id`, `nama`, `deskripsi`, `album`, `cetak`, `flashdisk`, `box`, `duavg`, `satuvg`, `asisten`, `editor`, `transport`, `diskon`, `total_biaya_produksi`, `harga_paket`, `laba`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(2, 'Paket satu', 'klasdfj', 0, 5000, 0, 0, 0, 0, 0, 0, 0, 0, 5000, 2000000, 1995000, '2021-08-26 14:13:50', '2021-08-27 19:46:23', 1, 1),
-(3, 'Paket Dua', NULL, 0, 200000, 0, 0, 0, 0, 0, 200000, 0, 10, 400000, 3000000, 2300000, '2021-08-27 19:46:54', '2021-08-30 08:02:54', 1, 1),
-(4, 'Paket Tiga', 'asdf', 0, 0, 0, 0, 0, 0, 0, 0, 500000, 20, 500000, 4500000, 3100000, '2021-08-27 19:47:28', NULL, 1, NULL);
+INSERT INTO `pricelist` (`id`, `nama`, `deskripsi`, `album`, `cetak`, `flashdisk`, `box`, `duavg`, `satuvg`, `jumlah_vg`, `jumlah_pg`, `jumlah_as`, `asisten`, `editor`, `transport`, `diskon`, `total_biaya_produksi`, `harga_paket`, `laba`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(2, 'Paket satu', 'klasdfj', 0, 5000, 0, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, 0, 5000, 2000000, 1995000, '2021-08-26 14:13:50', '2021-08-27 19:46:23', 1, 1),
+(3, 'Paket Dua', NULL, 0, 200000, 0, 0, 0, 0, NULL, NULL, NULL, 0, 200000, 0, 10, 400000, 3000000, 2300000, '2021-08-27 19:46:54', '2021-08-30 08:02:54', 1, 1),
+(4, 'Paket Tiga', 'asdf', 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, 0, 500000, 20, 500000, 4500000, 3100000, '2021-08-27 19:47:28', NULL, 1, NULL),
+(5, 'pricelist empat', 'sdafds', 50000, 20000, 15000, 10000, 0, 0, NULL, NULL, NULL, 10000, 200000, 50000, 5, 355000, 3000000, 2495000, '2021-09-09 19:18:25', '2021-09-09 19:19:27', 1, 1),
+(6, 'pricelist baru', 'sakdfjklasd', 1000, 2000, 2000, 5000, 500000, 500000, 1, 2, 1, 100000, 200000, 400000, 0, 1710000, 5000000, 3290000, '2021-09-11 12:25:19', NULL, 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `setting`
+--
+
+CREATE TABLE `setting` (
+  `id` int(11) NOT NULL,
+  `owner` text DEFAULT NULL,
+  `nama_apps` varchar(100) DEFAULT NULL,
+  `nama_company` text DEFAULT NULL,
+  `meta` text DEFAULT NULL,
+  `logo` text DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
+  `rekening` text DEFAULT NULL,
+  `instagram` varchar(200) DEFAULT NULL,
+  `cp` varchar(50) DEFAULT NULL,
+  `note_invoice` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `setting`
+--
+
+INSERT INTO `setting` (`id`, `owner`, `nama_apps`, `nama_company`, `meta`, `logo`, `alamat`, `rekening`, `instagram`, `cp`, `note_invoice`) VALUES
+(4, 'deva', 'coba', 'coba', 'coba', '1631368586-qw.png', 'cobaa', 'coba', 'coba', 'coba', '<p>coba</p>');
 
 -- --------------------------------------------------------
 
@@ -173,10 +203,9 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `kode`, `nama_customer`, `alamat_customer`, `telp_customer`, `subtotal`, `ppn`, `potongan`, `total`, `laba`, `dibayar`, `charge`, `ket_charge`, `status`, `tgl_buat`, `angsur`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(7, 'TRX-VIII-21-001', 'joni', 'gurah kediri', '092384902', 4500000, 20000, 20000, 4500000, 3100000, 3500000, 0, NULL, 'Belum Lunas', '2021-08-29', 3, '2021-08-29 20:16:07', '2021-08-30 07:51:24', 1, 1),
-(8, 'TRX-VIII-21-002', 'Bandi', 'Gurah kediri depan kantro kecamatan', '0803248209809', 5400000, 0, 5000, 5395000, 5095000, 5395000, 0, NULL, 'Lunas', '2021-08-30', 3, '2021-08-30 08:04:45', '2021-08-30 08:05:27', 1, 1),
-(9, 'TRX-IX-21-001', 'asdf', 'asdf', '08187324992387', 2000000, 20000, 20000, 2050000, 1995000, 2050000, 50000, 'Jam acara mundur', 'Lunas', '2021-09-02', 3, '2021-09-01 20:17:33', '2021-09-01 20:24:50', 1, 1),
-(10, 'TRX-IX-21-002', 'admin', 'sadsdf', '08120938902380', 3600000, 0, 0, 3600000, 3100000, 3600000, 0, NULL, 'Lunas', '2021-09-02', 1, '2021-09-01 20:19:32', NULL, 1, NULL);
+(15, 'TRX-IX-21-001', 'halo', 'asdfsdf', '08187324992387', 2000000, 0, 0, 2000000, 1995000, 1000000, 0, '-', 'Belum Lunas', '2021-09-11', 1, '2021-09-11 17:57:54', NULL, 1, NULL),
+(16, 'TRX-IX-21-002', 'asdf', 'asdf', '08120938902380', 5000000, 0, 0, 5000000, 3290000, 3500000, 0, 'sdf', 'Belum Lunas', '2021-09-11', 3, '2021-09-11 18:17:44', '2021-09-11 18:44:19', 1, 1),
+(17, 'TRX-IX-21-003', 'halo', 'dsfjl', '08120938902380', 3600000, 10000, 0, 3710000, 3100000, 3710000, 100000, '-', 'Lunas', '2021-09-11', 2, '2021-09-11 18:23:15', '2021-09-11 18:30:32', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -203,11 +232,9 @@ CREATE TABLE `transaksi_detail` (
 --
 
 INSERT INTO `transaksi_detail` (`id`, `kode_transaksi`, `id_pricelist`, `nama_pricelist`, `harga`, `diskon`, `jumlah`, `total`, `laba`, `tgl_eksekusi`, `lokasi`) VALUES
-(21, 'TRX-VIII-21-001', 4, 'Paket Tiga', 4500000, 0, 1, 4500000, 3100000, '2021-08-29 12:00:00', 'gurah'),
-(24, 'TRX-VIII-21-002', 4, 'Paket Tiga', 4500000, 20, 1, 3600000, 3100000, '2021-08-30 14:00:00', 'Magersari'),
-(25, 'TRX-VIII-21-002', 2, 'Paket satu', 2000000, 10, 1, 1800000, 1995000, '2021-08-31 05:00:00', 'Babadan'),
-(27, 'TRX-IX-21-002', 4, 'Paket Tiga', 4500000, 20, 1, 3600000, 3100000, '2021-09-23 12:00:00', 'Gurah'),
-(28, 'TRX-IX-21-001', 2, 'Paket satu', 2000000, 0, 1, 2000000, 1995000, '2021-09-02 12:00:00', 'Gurah');
+(36, 'TRX-IX-21-001', 2, 'Paket satu', 2000000, 0, 1, 2000000, 1995000, '2021-09-11 12:00:00', 'kediri'),
+(40, 'TRX-IX-21-003', 4, 'Paket Tiga', 4500000, 20, 1, 3600000, 3100000, '2021-09-11 12:00:00', 'gurah'),
+(41, 'TRX-IX-21-002', 6, 'pricelist baru', 5000000, 0, 1, 5000000, 3290000, '2021-09-11 12:00:00', 'gurah');
 
 -- --------------------------------------------------------
 
@@ -250,22 +277,17 @@ CREATE TABLE `transaksi_log` (
 --
 
 INSERT INTO `transaksi_log` (`id`, `kode_transaksi`, `aksi`, `keterangan`, `admin`, `tgl`) VALUES
-(11, 'TRX-VIII-21-001', 'add', 'Menambahkan data transaksi', 1, '2021-08-29 20:16:07'),
-(12, 'TRX-VIII-21-001', 'pay', 'Menambahkan data pembayaran transaksi ke-1 / DP', 1, '2021-08-29 20:16:07'),
-(13, 'TRX-VIII-21-001', 'edit', 'Mengubah data transaksi', 1, '2021-08-30 07:51:24'),
-(14, 'TRX-VIII-21-001', 'pay', 'Menambahkan data pembayaran transaksi ke-2', 1, '2021-08-30 07:51:57'),
-(15, 'TRX-VIII-21-002', 'add', 'Menambahkan data transaksi', 1, '2021-08-30 08:04:46'),
-(16, 'TRX-VIII-21-002', 'pay', 'Menambahkan data pembayaran transaksi ke-1 / DP', 1, '2021-08-30 08:04:46'),
-(17, 'TRX-VIII-21-002', 'edit', 'Mengubah data transaksi', 1, '2021-08-30 08:05:27'),
-(18, 'TRX-VIII-21-002', 'pay', 'Menambahkan data pembayaran transaksi ke-2', 1, '2021-08-30 08:05:56'),
-(19, 'TRX-VIII-21-002', 'pay', 'Menambahkan data pembayaran transaksi ke-3', 1, '2021-08-30 08:06:38'),
-(20, 'TRX-IX-21-001', 'pay', 'Menambahkan data pembayaran transaksi ke-1 / DP', 1, '2021-09-01 20:17:32'),
-(21, 'TRX-IX-21-001', 'add', 'Menambahkan data transaksi', 1, '2021-09-01 20:17:33'),
-(22, 'TRX-IX-21-002', 'pay', 'Menambahkan data pembayaran transaksi ke-1 Sekaligus Pelunasan', 1, '2021-09-01 20:19:32'),
-(23, 'TRX-IX-21-002', 'add', 'Menambahkan data transaksi', 1, '2021-09-01 20:19:32'),
-(24, 'TRX-IX-21-001', 'pay', 'Menambahkan data pembayaran transaksi ke-2', 1, '2021-09-01 20:23:31'),
-(25, 'TRX-IX-21-001', 'edit', 'Mengubah data transaksi', 1, '2021-09-01 20:24:50'),
-(26, 'TRX-IX-21-001', 'pay', 'Menambahkan data pembayaran transaksi ke-3', 1, '2021-09-01 20:25:06');
+(40, 'TRX-IX-21-001', 'pay', 'Menambahkan data pembayaran transaksi ke-1 / DP', 1, '2021-09-11 17:57:54'),
+(41, 'TRX-IX-21-001', 'add', 'Menambahkan data transaksi', 1, '2021-09-11 17:57:54'),
+(42, 'TRX-IX-21-002', 'pay', 'Menambahkan data pembayaran transaksi ke-1 / DP', 1, '2021-09-11 18:17:43'),
+(43, 'TRX-IX-21-002', 'add', 'Menambahkan data transaksi', 1, '2021-09-11 18:17:44'),
+(44, 'TRX-IX-21-003', 'pay', 'Menambahkan data pembayaran transaksi ke-1 / DP', 1, '2021-09-11 18:23:15'),
+(45, 'TRX-IX-21-003', 'add', 'Menambahkan data transaksi', 1, '2021-09-11 18:23:15'),
+(46, 'TRX-IX-21-003', 'edit', 'Mengubah data transaksi', 1, '2021-09-11 18:30:08'),
+(47, 'TRX-IX-21-003', 'edit', 'Mengubah data transaksi', 1, '2021-09-11 18:30:32'),
+(48, 'TRX-IX-21-003', 'pay', 'Menambahkan data pembayaran transaksi ke-2', 1, '2021-09-11 18:43:23'),
+(49, 'TRX-IX-21-002', 'pay', 'Menambahkan data pembayaran transaksi ke-2', 1, '2021-09-11 18:44:07'),
+(50, 'TRX-IX-21-002', 'edit', 'Mengubah data transaksi', 1, '2021-09-11 18:44:20');
 
 -- --------------------------------------------------------
 
@@ -293,7 +315,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `level`, `email`, `telp`, `gambar`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'deva satrio damara', 'devasatrio', 'Super Admin', 'satrio@gmail.com', '0234890', '1591507920-love.png', NULL, '$2y$10$sQIyYXne5mnsZ3rEE6MNwOGweJXyWzCtFQZDWhgTNZSIjiYwvxuti', NULL, '2020-06-06 21:36:35', '2020-06-06 22:32:00');
+(1, 'deva satrio damara', 'devasatrio', 'Super Admin', 'satrio@gmail.com', '0234890', '1591507920-love.png', NULL, '$2y$10$sQIyYXne5mnsZ3rEE6MNwOGweJXyWzCtFQZDWhgTNZSIjiYwvxuti', NULL, '2020-06-06 21:36:35', '2020-06-06 22:32:00'),
+(2, 'arya', 'admin', 'Admin', 'anakmbarep999@gmail.com', '90284092', '1631189772-3.jpg', NULL, '$2y$10$DFc5eAV862JVdJXcQ6DbhOOboA5VJFcmzPxYCNqAYWVEJDPhApboW', NULL, NULL, '2021-09-11 14:13:46');
 
 --
 -- Indexes for dumped tables
@@ -327,6 +350,12 @@ ALTER TABLE `pembayaran`
 -- Indexes for table `pricelist`
 --
 ALTER TABLE `pricelist`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setting`
+--
+ALTER TABLE `setting`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -380,43 +409,49 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `pricelist`
 --
 ALTER TABLE `pricelist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `setting`
+--
+ALTER TABLE `setting`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail_thumb`
 --
 ALTER TABLE `transaksi_detail_thumb`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `transaksi_log`
 --
 ALTER TABLE `transaksi_log`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

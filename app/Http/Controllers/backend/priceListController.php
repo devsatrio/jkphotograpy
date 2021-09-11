@@ -50,8 +50,8 @@ class priceListController extends Controller
             'cetak'=>str_replace('.','',$request->cetak),
             'flashdisk'=>str_replace('.','',$request->flashdisk),
             'box'=>str_replace('.','',$request->box),
-            'duavg'=>str_replace('.','',$request->duavg),
-            'satuvg'=>str_replace('.','',$request->satuvg),
+            'duavg'=>str_replace('.','',$request->duavg),//vidographer
+            'satuvg'=>str_replace('.','',$request->satuvg),//photograher
             'asisten'=>str_replace('.','',$request->asisten),
             'editor'=>str_replace('.','',$request->editor),
             'transport'=>str_replace('.','',$request->transport),
@@ -59,6 +59,9 @@ class priceListController extends Controller
             'laba'=>str_replace('.','',$request->laba_bersih),
             'created_at'=>date('Y-m-d H:i:s'),
             'created_by'=>Auth::user()->id,
+            'jumlah_vg'=>$request->jml_vg,
+            'jumlah_pg'=>$request->jml_pg,
+            'jumlah_as'=>$request->jml_as,
         ]);
 
         return redirect('/pricelist')->with('status','Sukses menyimpan data');
@@ -101,6 +104,9 @@ class priceListController extends Controller
             'laba'=>str_replace('.','',$request->laba_bersih),
             'updated_at'=>date('Y-m-d H:i:s'),
             'updated_by'=>Auth::user()->id,
+            'jumlah_vg'=>$request->jml_vg,
+            'jumlah_pg'=>$request->jml_pg,
+            'jumlah_as'=>$request->jml_as,
         ]);
 
         return redirect('/pricelist')->with('status','Sukses memperbarui data');

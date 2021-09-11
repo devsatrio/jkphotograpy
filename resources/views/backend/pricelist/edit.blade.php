@@ -133,7 +133,43 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">2 VG</label>
+                                            <label for="exampleInputEmail1">Jumlah Videographer</label>
+                                            <div class="input-group mb-3">
+                                                <input type="number" min="0" class="form-control" value="{{$row->jumlah_vg}}" name="jml_vg"
+                                                    id="jml_vg" required>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">orang</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Jumlah Photographer</label>
+                                            <div class="input-group mb-3">
+                                                <input type="number" min="0" class="form-control" value="{{$row->jumlah_pg}}" name="jml_pg"
+                                                    id="jml_pg" required>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">orang</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Jumlah Asisten</label>
+                                            <div class="input-group mb-3">
+                                                <input type="number" min="0" class="form-control" value="{{$row->jumlah_as}}" name="jml_as"
+                                                    id="jml_as" required>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1">orang</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Biaya Vidiographer</label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">Rp</span>
@@ -144,7 +180,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">1 VG</label>
+                                            <label for="exampleInputEmail1">Biaya Photographer</label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">Rp</span>
@@ -155,7 +191,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Asisten</label>
+                                            <label for="exampleInputEmail1">Biaya Asisten</label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon1">Rp</span>

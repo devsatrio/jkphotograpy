@@ -2,9 +2,11 @@
     <li class="nav-item">
         <a href="{{url('/home')}}" class="nav-link">Home</a>
     </li>
+    @if(Auth::user()->level=='Super Admin')
     <li class="nav-item">
         <a href="{{url('/admin')}}" class="nav-link">Admin</a>
     </li>
+    @endif
     <li class="nav-item">
         <a href="{{url('/pricelist')}}" class="nav-link">Price List</a>
     </li>
@@ -14,9 +16,14 @@
     <li class="nav-item">
         <a href="{{url('/laporan-transaksi')}}" class="nav-link">Laporan Transaksi</a>
     </li>
+    @if(Auth::user()->level=='Super Admin')
     <li class="nav-item">
         <a href="{{url('/laporan-labarugi')}}" class="nav-link">Laporan Laba Rugi</a>
     </li>
+    <li class="nav-item">
+        <a href="{{url('/setting')}}" class="nav-link">Setting Web</a>
+    </li>
+    @endif
     <li class="nav-item dropdown">
         <!-- <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             class="nav-link dropdown-toggle">Dropdown</a> -->

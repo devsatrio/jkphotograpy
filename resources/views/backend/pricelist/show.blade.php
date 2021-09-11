@@ -39,10 +39,22 @@
                                         <h5>Detail Pricelist</h5>
                                         <hr>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-5">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nama Price List</label>
                                             <p>{{$row->nama}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Diskon</label>
+                                            <p>{{$row->diskon}} %</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Harga Paket</label>
+                                            <p>Rp {{number_format($row->harga_paket,0,',','.')}}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -51,19 +63,8 @@
                                             <p>{{$row->deskripsi}}</p>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Diskon</label>
-                                            <p>{{$row->diskon}} %</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Harga Paket</label>
-                                            <p>Rp {{number_format($row->harga_paket,0,',','.')}}</p>
-                                        </div>
-                                    </div>
                                 </div>
+                                @if(Auth::user(0)->level=='Super Admin')
                                 <div class="row mt-5">
                                     <div class="col-md-12">
                                         <h5>Biaya Produksi</h5>
@@ -95,19 +96,37 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">2 VG</label>
+                                            <label for="exampleInputEmail1">Jumlah Videographer</label>
+                                            <p>{{$row->jumlah_vg}} Orang</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Jumlah Photographer</label>
+                                            <p>{{$row->jumlah_pg}} Orang</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Jumlah Asisten</label>
+                                            <p>{{$row->jumlah_as}} Orang</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Biaya Videographer</label>
                                             <p>Rp {{number_format($row->duavg,0,',','.')}}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">1 VG</label>
+                                            <label for="exampleInputEmail1">Biaya Photographer</label>
                                             <p>Rp {{number_format($row->satuvg,0,',','.')}}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Asisten</label>
+                                            <label for="exampleInputEmail1">Biaya Asisten</label>
                                             <p>Rp {{number_format($row->asisten,0,',','.')}}</p>
                                         </div>
                                     </div>
@@ -165,7 +184,7 @@
                                     </div>
                                     
                                 </div>
-
+                                @endif
                             </div>
 
                             <div class="card-footer">
