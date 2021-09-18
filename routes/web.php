@@ -30,6 +30,7 @@ Route::post('/bayar-transaksi','backend\transaksiController@bayartransaksi');
 Route::post('/hapus-detail-transaksi','backend\transaksiController@hapusdetail');
 Route::get('/detail-transaksi/{kode}','backend\transaksiController@datatransaksi');
 Route::get('/data-detail-transaksi/{kode}','backend\transaksiController@detailtransaksi');
+Route::get('/data-cetak-transaksi/{kode}','backend\transaksiController@datacetaktransaksi');
 Route::get('/cari-detail-pricelist/{kode}','backend\transaksiController@caridetailpricelist');
 Route::resource('/transaksi','backend\transaksiController');
 

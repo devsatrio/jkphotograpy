@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2021 at 04:16 PM
+-- Generation Time: Sep 18, 2021 at 05:59 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.13
 
@@ -158,6 +158,7 @@ CREATE TABLE `setting` (
   `alamat` text DEFAULT NULL,
   `rekening` text DEFAULT NULL,
   `instagram` varchar(200) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `cp` varchar(50) DEFAULT NULL,
   `note_invoice` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -166,8 +167,8 @@ CREATE TABLE `setting` (
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`id`, `owner`, `nama_apps`, `nama_company`, `meta`, `logo`, `alamat`, `rekening`, `instagram`, `cp`, `note_invoice`) VALUES
-(4, 'deva', 'coba', 'coba', 'coba', '1631368586-qw.png', 'cobaa', 'coba', 'coba', 'coba', '<p>coba</p>');
+INSERT INTO `setting` (`id`, `owner`, `nama_apps`, `nama_company`, `meta`, `logo`, `alamat`, `rekening`, `instagram`, `email`, `cp`, `note_invoice`) VALUES
+(4, 'deva', 'coba', 'coba', 'meta', '1631368586-qw.png', 'cobaa', 'coba', 'coba', 'satriosuklun@gmail.com', 'coba', '<p>coba</p>');
 
 -- --------------------------------------------------------
 
