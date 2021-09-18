@@ -96,7 +96,7 @@
                                                 class="form-control">{{$row->rekening}}</textarea>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Logo</label>
                                             <input type="file" class="form-control" name="logo" id="logo" accept="image/*">
@@ -104,6 +104,13 @@
                                             @if($row->logo!='')
                                             <a href="{{asset('img/setting/'.$row->logo)}}" target="blank()">Lihat Logo</a>
                                             @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Email</label>
+                                            <input type="text" class="form-control" name="email" value="{{$row->email}}"
+                                                required>
                                         </div>
                                     </div>
                                 </div>

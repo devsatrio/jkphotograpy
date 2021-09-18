@@ -299,12 +299,14 @@
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Bukti Transfer/Pembayaran</label>
-                                                <input type="file" class="form-control" name="bts" id="bts" accept="image/*">
+                                                <input type="file" class="form-control" name="bts" id="bts"
+                                                    accept="image/*">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
+                                    <button type="button" onclick="cetaktransaksi('TRX-IX-21-003')">test</button>
                                     <button type="submit" id="simpanbtn"
                                         class="btn btn-success float-right">Simpan</button>
                                 </div>
@@ -316,6 +318,128 @@
         </div>
     </div>
 </div>
+@php
+$datasetting = DB::table('setting')->orderby('id','desc')->limit(1)->get();
+@endphp
+<div id="printdiv">
+    <table width="100%">
+        <tr>
+            <td width="13%" align="center">
+                @foreach($datasetting as $rowset)
+                <img src="{{asset('img/setting/'.$rowset->logo)}}" alt="logo" width="150px;">
+                @endforeach
+            </td>
+            <td align="left">
+                <div>
+                    @foreach($datasetting as $rowset)
+                    <h5><b>{{$rowset->nama_company}}</b></h5>
+                    <span>{{$rowset->owner}}</span><br>
+                    <span>{{$rowset->alamat}}</span><br>
+                    <span>{{$rowset->cp}}</span><br>
+                    <span>{{$rowset->instagram}}</span><br>
+                    <span>{{$rowset->email}}</span><br>
+                    @endforeach
+                </div>
+            </td>
+            <td align="right">
+                <div>
+                    <span><b>FAKTUR</b></span><br>
+                    <span>{{$kode}}</span>
+                    <br>
+                    <span><b>TANGGAL TRANSAKSI</b></span><br>
+                    <span id="print_tgl_transaksi">-</span>
+                    <br>
+                    <span><b>TANGGAL BAYAR</b></span><br>
+                    <span id="print_tgl_bayar">-</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <span>UNTUK</span><br>
+    <span><b id="print_pembeli">Pembeli</b></span><br>
+    <span id="print_alamat_pembeli">alamat</span><br>
+    <span id="print_wa_pembeli">wa</span>
+    <table width="100%" style="border-collapse:collapse;border: 1px solid black; font-size: 10;">
+        <thead>
+            <tr>
+                <td style="border: 1px solid black; font-size: 10;" width="60%">Deskripsi</td>
+                <td style="border: 1px solid black; font-size: 10;" width="10%">Diskon</td>
+                <td style="border: 1px solid black; font-size: 10;" width="30%">Jumlah</td>
+            </tr>
+        </thead>
+        <tbody id="print_item_transaksi">
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td style="border: 1px solid black; font-size: 10;" colspan="2" align="right">Potongan</td>
+                <td style="border: 1px solid black; font-size: 10;" align="right"><b id="print_potongan">Rp. 0</b></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; font-size: 10;" colspan="2" align="right">PPN</td>
+                <td style="border: 1px solid black; font-size: 10;" align="right"><b id="print_ppn">Rp. 0</b></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; font-size: 10;" colspan="2" align="right">Charge</td>
+                <td style="border: 1px solid black; font-size: 10;" align="right"><b id="print_charge">Rp. 0</b></td>
+            </tr>
+        </tfoot>
+    </table>
+    <table width="100%" border="0">
+        <tr>
+            <td width="70%" rowspan="2">
+                <h5><b>Instruksi Pembayaran</b></h5>
+                @foreach($datasetting as $rowset)
+                <div>
+                    {!!$rowset->note_invoice!!}
+                </div>
+                @endforeach
+            </td>
+            <td>
+                <table width="100%">
+                    <tr>
+                        <td>Total</td>
+                        <td align="right"><b id="print_total">Rp. 0</b></td>
+                    </tr>
+                    <tr>
+                        <td>Dibayar</td>
+                        <td align="right"><b id="print_dibayar">Rp. 0</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Total Akhir</span>
+                        </td>
+                        <td align="right"><b id="print_total_akhir">Rp. 0</b></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br>
+                @php
+                $newkode = base64_encode($kode);
+                @endphp
+                {!! QrCode::size(150)->generate(url('/dokumen/transaksi/'.$newkode)); !!}
+                <br><br><span><b>TANGGAL DITANDATANGANI</b></span><br>
+                <span id="print_tgl_ttd"></span>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    <b><span>Bukti Transfer / Pembayaran</span></b>
+    <table width="100%">
+        <tr id="print_bukti_tf">
+        </tr>
+    </table>
+</div>
+<br><br><br>
 @endsection
 
 @section('customjs')

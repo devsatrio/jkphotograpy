@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use DB;
 use Auth;
-
+use QrCode;
 
 class transaksiController extends Controller
 {
@@ -515,5 +515,19 @@ class transaksiController extends Controller
         }
         DB::table('transaksi')->where('id',$id)->delete();
         return redirect('transaksi')->with('status','Sukses menghapus data');
+    }
+
+    //=================================================================
+    public function datacetaktransaksi($kode)
+    {
+        $trx = DB::table('transaksi')->where('kode',$kode)->get();
+        $detail_trx = DB::table('transaksi_detail')->where('kode_transaksi',$kode)->get();
+        $pembayaran = DB::table('pembayaran')->where('kode_transaksi',$kode)->get();
+        $print = [
+            'trx'=>$trx,
+            'detail'=>$detail_trx,
+            'pembayaran'=>$pembayaran,
+        ];
+        return response()->json($print);
     }
 }

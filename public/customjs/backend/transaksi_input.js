@@ -453,3 +453,64 @@ $('#bts').on('change', function () {
         }
     }
 });
+
+//===============================================================================================
+function cetaktransaksi(kode) {
+    $.ajax({
+        type: 'GET',
+        url: '/data-cetak-transaksi/' + kode,
+        success: function (data) {
+            $.each(data.trx, function (key, value) {
+                $('#print_pembeli').html(value.nama_customer);
+                $('#print_alamat_pembeli').html(value.alamat_customer);
+                $('#print_wa_pembeli').html(value.telp_customer);
+                $('#print_tgl_transaksi').html(value.tgl_buat);
+                $('#print_tgl_ttd').html(value.tgl_buat);
+                $('#print_potongan').html( 'Rp ' + rupiah(value.potongan));
+                $('#print_ppn').html( 'Rp ' + rupiah(value.ppn));
+                $('#print_charge').html( 'Rp ' + rupiah(value.charge));
+                $('#print_total').html( 'Rp ' + rupiah(value.total));
+                $('#print_dibayar').html( 'Rp ' + rupiah(value.dibayar));
+                $('#print_total_akhir').html( 'Rp ' + rupiah(parseInt(value.total)-parseInt(value.dibayar)));
+                rows = rows + '<td>' + value.tgl_eksekusi + '</td>';
+            });
+
+            var rows = '';
+            $.each(data.detail, function (key, value) {
+                rows = rows + '<tr>';
+                rows = rows + '<td style="border: 1px solid black; font-size: 10;" width="60%">' + value.nama_pricelist + '</td>';
+                rows = rows + '<td style="border: 1px solid black; font-size: 10;" width="10%">' + value.diskon + '% </td>';
+                rows = rows + '<td style="border: 1px solid black; font-size: 10;" align="right" width="30%"> Rp ' + rupiah(value.total) + '</td>';
+                rows = rows + '</tr>';
+            });
+            $('#print_item_transaksi').html(rows);
+
+            var rows = '';
+            $.each(data.detail, function (key, value) {
+                rows = rows + '<tr>';
+                rows = rows + '<td>' + value.nama_pricelist + '</td>';
+                rows = rows + '<td>' + value.diskon + '% </td>';
+                rows = rows + '<td align="right"><b>Rp ' + rupiah(value.total) + '</b></td>';
+                rows = rows + '</tr>';
+            });
+            $('#print_item_transaksi').html(rows);
+
+            var rowstf = '';
+            var tgbayar = '';
+            $.each(data.pembayaran, function (key, value) {
+                tgbayar = tgbayar+', '+value.tgl_bayar;
+                if(value.gambar!='gambar_kosong'){
+                    rowstf = rowstf + '<td widht="20%"><img src="/img/buktibayar/'+value.gambar+'" width="180px;"></td>';
+                }
+            });
+            $('#print_tgl_bayar').html(tgbayar.substr(1));
+            $('#print_bukti_tf').html(rowstf);
+        }, complete: function () {
+            var divToPrint=document.getElementById('printdiv');
+            var newWin=window.open('','Print-Window');
+            newWin.document.open();
+            newWin.document.write('<html><body onload="window.print();window.close()">'+divToPrint.innerHTML+'</body></html>');
+            newWin.document.close();
+        }
+    });
+}

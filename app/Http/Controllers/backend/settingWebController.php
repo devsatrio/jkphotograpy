@@ -44,6 +44,7 @@ class settingWebController extends Controller
                 'rekening'=>$request->rekening,
                 'instagram'=>$request->ig,
                 'cp'=>$request->telp,
+                'email'=>$request->email,
                 'note_invoice'=>$request->note_invoice,
                 'logo'=>$finalname,
             ]);
@@ -59,6 +60,7 @@ class settingWebController extends Controller
                 'rekening'=>$request->rekening,
                 'instagram'=>$request->ig,
                 'cp'=>$request->telp,
+                'email'=>$request->email,
                 'note_invoice'=>$request->note_invoice,
             ]);
         }
