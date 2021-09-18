@@ -346,6 +346,7 @@ $('#simpanbtn').on('click', function (e) {
                         contentType: false,
                         processData: false,
                         success: function () {
+                            cetaktransaksi($('#kode').val());
                             swalWithBootstrapButtons.fire({
                                 title: 'Info',
                                 text: 'Data Berhasil disimpan',
@@ -380,6 +381,7 @@ $('#simpanbtn').on('click', function (e) {
                     contentType: false,
                     processData: false,
                     success: function () {
+                        cetaktransaksi($('#kode').val());
                         swalWithBootstrapButtons.fire({
                             title: 'Info',
                             text: 'Data Berhasil disimpan',
@@ -472,25 +474,15 @@ function cetaktransaksi(kode) {
                 $('#print_total').html( 'Rp ' + rupiah(value.total));
                 $('#print_dibayar').html( 'Rp ' + rupiah(value.dibayar));
                 $('#print_total_akhir').html( 'Rp ' + rupiah(parseInt(value.total)-parseInt(value.dibayar)));
-                rows = rows + '<td>' + value.tgl_eksekusi + '</td>';
             });
 
             var rows = '';
             $.each(data.detail, function (key, value) {
                 rows = rows + '<tr>';
-                rows = rows + '<td style="border: 1px solid black; font-size: 10;" width="60%">' + value.nama_pricelist + '</td>';
-                rows = rows + '<td style="border: 1px solid black; font-size: 10;" width="10%">' + value.diskon + '% </td>';
-                rows = rows + '<td style="border: 1px solid black; font-size: 10;" align="right" width="30%"> Rp ' + rupiah(value.total) + '</td>';
-                rows = rows + '</tr>';
-            });
-            $('#print_item_transaksi').html(rows);
-
-            var rows = '';
-            $.each(data.detail, function (key, value) {
-                rows = rows + '<tr>';
-                rows = rows + '<td>' + value.nama_pricelist + '</td>';
-                rows = rows + '<td>' + value.diskon + '% </td>';
-                rows = rows + '<td align="right"><b>Rp ' + rupiah(value.total) + '</b></td>';
+                rows = rows + '<td style="font-size:14px;border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;">' + value.nama_pricelist + '</td>';
+                rows = rows + '<td style="font-size:14px;border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;">' + value.diskon + '% </td>';
+                rows = rows + '<td style="font-size:14px;border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;" align="right">Rp ' + rupiah(value.harga) + '</td>';
+                rows = rows + '<td style="font-size:14px;border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;" align="right"> Rp ' + rupiah(value.total) + '</td>';
                 rows = rows + '</tr>';
             });
             $('#print_item_transaksi').html(rows);

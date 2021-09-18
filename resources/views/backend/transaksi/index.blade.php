@@ -184,7 +184,7 @@
             <div class="modal-header">
                 <h5 class="modal-title">Pembayaran Transaksi <span id="tampil_kode"></span></h5>
             </div>
-            <form action="{{url('bayar-transaksi')}}" method="post">
+            <form action="{{url('bayar-transaksi')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="row">

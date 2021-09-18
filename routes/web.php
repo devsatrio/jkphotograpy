@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+//===================================================================================
 Route::get('/', function () {
     return view('frontend.index');
 });
+Route::get('/dokumen/transaksi/{kode}', 'frontend\frontendController@index');
 
+//===================================================================================
 Auth::routes([
     'register' => false,
     'reset' => false,

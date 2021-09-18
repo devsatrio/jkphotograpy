@@ -32,7 +32,7 @@
                             @php
                             $jumlah_pricelist = DB::table('pricelist')->count();
                             @endphp
-                            <h3>150</h3>
+                            <h3>{{$jumlah_pricelist}}</h3>
 
                             <p>Pricelist</p>
                         </div>

@@ -306,7 +306,6 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="button" onclick="cetaktransaksi('TRX-IX-21-003')">test</button>
                                     <button type="submit" id="simpanbtn"
                                         class="btn btn-success float-right">Simpan</button>
                                 </div>
@@ -321,123 +320,139 @@
 @php
 $datasetting = DB::table('setting')->orderby('id','desc')->limit(1)->get();
 @endphp
-<div id="printdiv">
-    <table width="100%">
-        <tr>
-            <td width="13%" align="center">
-                @foreach($datasetting as $rowset)
-                <img src="{{asset('img/setting/'.$rowset->logo)}}" alt="logo" width="150px;">
-                @endforeach
-            </td>
-            <td align="left">
-                <div>
+<div id="printdiv" style="display:none;">
+    <div style="font-size:12px;font-family: Arial, Helvetica, sans-serif;">
+        <table border="0" width="100%">
+            <tr>
+                <td width="15%" align="center">
                     @foreach($datasetting as $rowset)
-                    <h5><b>{{$rowset->nama_company}}</b></h5>
-                    <span>{{$rowset->owner}}</span><br>
-                    <span>{{$rowset->alamat}}</span><br>
-                    <span>{{$rowset->cp}}</span><br>
-                    <span>{{$rowset->instagram}}</span><br>
-                    <span>{{$rowset->email}}</span><br>
+                    <img src="{{asset('img/setting/'.$rowset->logo)}}" alt="logo" width="150px;">
                     @endforeach
-                </div>
-            </td>
-            <td align="right">
-                <div>
-                    <span><b>FAKTUR</b></span><br>
-                    <span>{{$kode}}</span>
+                </td>
+                <td width="45%" style="padding-right:15px;padding-left:15px;">
+                    @foreach($datasetting as $rowset)
+                    <p style="font-size:20px;margin-top:20px;"><b>{{$rowset->nama_company}}</b></p>
+                    <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->owner}}</p>
+                    <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->alamat}}</p>
+                    <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->cp}}</p>
+                    <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->instagram}}</p>
+                    <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->email}}</p>
+                    @endforeach
+                </td>
+                <td width="30%" style="padding-right:15px;padding-left:15px;" align="right">
+                    <p style="margin-top:5px;margin-bottom:5px;"><b>Faktur</b></p>
+                    <p style="margin-top:5px;margin-bottom:8px;">{{$kode}}</p>
+                    <p style="margin-top:5px;margin-bottom:5px;"><b>Tanggal</b></p>
+                    <p style="margin-top:5px;margin-bottom:8px;" id="print_tgl_transaksi">@jk0wpow</p>
+                    <p style="margin-top:5px;margin-bottom:5px;"><b>Karena</b></p>
+                    <p style="margin-top:5px;">@jk0wpow</p>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <p>UNTUK</p>
+        <p style="margin-top:5px;margin-bottom:5px;"><b id="print_pembeli">Penbeli Jasa</b></p>
+        <p style="margin-top:5px;margin-bottom:5px;" id="print_alamat_pembeli">Alamat pembeli</p>
+        <p style="margin-top:5px;margin-bottom:5px;" id="print_wa_pembeli">039489028302</p>
+        <table border="1" width="100%" style="border-collapse: collapse;margin-top:10px;">
+            <thead>
+                <tr>
+                    <td width="50%" style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;">
+                        <b>DESKRIPSI</b>
+                    </td>
+                    <td width="5%" style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;">
+                        <b>DISKON</b>
+                    </td>
+                    <td width="20%" style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;">
+                        <b>HARGA</b>
+                    </td>
+                    <td width="25%" style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;">
+                        <b>JUMLAH</b>
+                    </td>
+                </tr>
+            </thead>
+            <tbody id="print_item_transaksi">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;" colspan="3"
+                        align="right">Potongan</td>
+                    <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;" align="right">
+                        <b id="print_potongan">Rp. 0</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;" colspan="3"
+                        align="right">PPN</td>
+                    <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;" align="right">
+                        <b id="print_ppn">Rp. 0</b></td>
+                </tr>
+                <tr>
+                    <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;" colspan="3"
+                        align="right">Charge</td>
+                    <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;" align="right">
+                        <b id="print_charge">Rp. 0</b>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <table border="0" width="100%">
+            <tr>
+                <td width="55%" rowspan="2" style="vertical-align:top;padding-top:10px;padding-right:20px;">
+                    <h5><b>Instruksi Pembayaran</b></h5>
+                    @foreach($datasetting as $rowset)
+                    <div style=" font-size: 12;">
+                        {!!$rowset->note_invoice!!}
+                    </div>
+                    @endforeach
+                </td>
+                <td width="45%" style="vertical-align:top;">
+                    <table width="100%" border="0" style="font-size:15px;border-collapse: collapse;margin-top:10px;">
+                        <tr>
+                            <td style="padding-right:15px;padding-left:15px;">
+                                <b>TOTAL</b>
+                            </td>
+                            <td style="padding-right:15px;padding-left:15px;" align="right">
+                                <b id="print_total"></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-right:15px;padding-left:15px;"><b>DIBAYAR</b></td>
+                            <td style="padding-right:15px;padding-left:15px;" align="right">
+                                <b id="print_dibayar"></b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-right:15px;padding-left:15px;"><b>GRAND TOTAL</b></td>
+                            <td style="padding-right:15px;padding-left:15px;" align="right">
+                                <b id="print_total_akhir"></b>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td width="45%" align="right">
                     <br>
-                    <span><b>TANGGAL TRANSAKSI</b></span><br>
-                    <span id="print_tgl_transaksi">-</span>
+                    @php
+                    $newkode = base64_encode($kode);
+                    @endphp
+                    {!! QrCode::size(100)->generate(url('/dokumen/transaksi/'.$newkode)); !!}
                     <br>
-                    <span><b>TANGGAL BAYAR</b></span><br>
-                    <span id="print_tgl_bayar">-</span>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <hr>
-    <span>UNTUK</span><br>
-    <span><b id="print_pembeli">Pembeli</b></span><br>
-    <span id="print_alamat_pembeli">alamat</span><br>
-    <span id="print_wa_pembeli">wa</span>
-    <table width="100%" style="border-collapse:collapse;border: 1px solid black; font-size: 10;">
-        <thead>
-            <tr>
-                <td style="border: 1px solid black; font-size: 10;" width="60%">Deskripsi</td>
-                <td style="border: 1px solid black; font-size: 10;" width="10%">Diskon</td>
-                <td style="border: 1px solid black; font-size: 10;" width="30%">Jumlah</td>
+                    <span><b>TANGGAL DITANDATANGANI</b></span><br>
+                    <span id="print_tgl_ttd"></span>
+                </td>
             </tr>
-        </thead>
-        <tbody id="print_item_transaksi">
-
-        </tbody>
-        <tfoot>
-            <tr>
-                <td style="border: 1px solid black; font-size: 10;" colspan="2" align="right">Potongan</td>
-                <td style="border: 1px solid black; font-size: 10;" align="right"><b id="print_potongan">Rp. 0</b></td>
+        </table>
+        <br>
+        <div style="page-break-before: always;"></div>
+        <span>Bukti Transfer / Pembayaran :</span>
+        <hr>
+        <table border="0">
+            <tr id="print_bukti_tf">
             </tr>
-            <tr>
-                <td style="border: 1px solid black; font-size: 10;" colspan="2" align="right">PPN</td>
-                <td style="border: 1px solid black; font-size: 10;" align="right"><b id="print_ppn">Rp. 0</b></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid black; font-size: 10;" colspan="2" align="right">Charge</td>
-                <td style="border: 1px solid black; font-size: 10;" align="right"><b id="print_charge">Rp. 0</b></td>
-            </tr>
-        </tfoot>
-    </table>
-    <table width="100%" border="0">
-        <tr>
-            <td width="70%" rowspan="2">
-                <h5><b>Instruksi Pembayaran</b></h5>
-                @foreach($datasetting as $rowset)
-                <div>
-                    {!!$rowset->note_invoice!!}
-                </div>
-                @endforeach
-            </td>
-            <td>
-                <table width="100%">
-                    <tr>
-                        <td>Total</td>
-                        <td align="right"><b id="print_total">Rp. 0</b></td>
-                    </tr>
-                    <tr>
-                        <td>Dibayar</td>
-                        <td align="right"><b id="print_dibayar">Rp. 0</b></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <hr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>Total Akhir</span>
-                        </td>
-                        <td align="right"><b id="print_total_akhir">Rp. 0</b></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <br>
-                @php
-                $newkode = base64_encode($kode);
-                @endphp
-                {!! QrCode::size(150)->generate(url('/dokumen/transaksi/'.$newkode)); !!}
-                <br><br><span><b>TANGGAL DITANDATANGANI</b></span><br>
-                <span id="print_tgl_ttd"></span>
-            </td>
-        </tr>
-    </table>
-    <hr>
-    <b><span>Bukti Transfer / Pembayaran</span></b>
-    <table width="100%">
-        <tr id="print_bukti_tf">
-        </tr>
-    </table>
+        </table>
+    </div>
 </div>
 <br><br><br>
 @endsection

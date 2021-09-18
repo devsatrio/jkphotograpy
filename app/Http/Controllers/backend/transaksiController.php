@@ -208,7 +208,7 @@ class transaksiController extends Controller
             'tgl'=>date('Y-m-d H:i:s')
         ]);
 
-        $finalname ='gambar_kosong';
+        
         if($request->hasFile('bts')){
             $nameland=$request->file('bts')->getClientOriginalname();
             $lower_file_name=strtolower($nameland);
@@ -216,6 +216,8 @@ class transaksiController extends Controller
             $finalname=time().'-'.$replace_space;
             $destination=public_path('img/buktibayar');
             $request->file('bts')->move($destination,$finalname);
+        }else{
+            $finalname ='gambar_kosong';
         }
 
         DB::table('pembayaran')
