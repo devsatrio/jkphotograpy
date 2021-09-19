@@ -322,51 +322,75 @@ $datasetting = DB::table('setting')->orderby('id','desc')->limit(1)->get();
 @endphp
 <div id="printdiv" style="display:none;">
     <div style="font-size:12px;font-family: Arial, Helvetica, sans-serif;">
-        <table border="0" width="100%">
+        <table border="0" width="100%" style="vertical-align: top;">
             <tr>
                 <td width="15%" align="center">
                     @foreach($datasetting as $rowset)
                     <img src="{{asset('img/setting/'.$rowset->logo)}}" alt="logo" width="150px;">
                     @endforeach
                 </td>
-                <td width="45%" style="padding-right:15px;padding-left:15px;">
+                <td width="85%" style="padding-right:15px;padding-left:15px;">
                     @foreach($datasetting as $rowset)
-                    <p style="font-size:20px;margin-top:20px;"><b>{{$rowset->nama_company}}</b></p>
+                    <p style="font-size:20px;margin-top:10px;margin-bottom:5px;font-color:#0066ff;">
+                        <b>{{$rowset->nama_company}}</b>
+                    </p>
                     <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->owner}}</p>
                     <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->alamat}}</p>
                     <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->cp}}</p>
-                    <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->instagram}}</p>
-                    <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->email}}</p>
+                    <p style="margin-top:5px;margin-bottom:0px;color:#3a5c84;"><img
+                            src="{{asset('img/nota/instagram.png')}}" alt=""
+                            width="12px;">&nbsp;{{$rowset->instagram}}&nbsp;<img
+                            src="{{asset('img/nota/envelope.png')}}" alt="" width="12px;">&nbsp;{{$rowset->email}}</p>
+                    <p style="margin-top:5px;margin-bottom:0px;"></p>
                     @endforeach
                 </td>
-                <td width="30%" style="padding-right:15px;padding-left:15px;" align="right">
-                    <p style="margin-top:5px;margin-bottom:5px;"><b>Faktur</b></p>
+                <!-- <td width="30%" style="padding-right:15px;padding-left:15px;" align="right">
+                                
+                            </td> -->
+            </tr>
+        </table>
+        <hr style="margin-bottom:15px;border-top: 2px solid #3a5c84;border-radius: 2px;">
+        <table width="100%">
+            <tr>
+                <td width="60%">
+                    <p style="margin-top:5px;margin-bottom:8px;"><span
+                            style="background-color:#3a5c84;color:white;padding:5px;"><b>UNTUK</b></span>
+                    </p>
+                    <p style="margin-top:0px;margin-bottom:0px;"><b id="print_pembeli">Penbeli Jasa</b></p>
+                    <p style="margin-top:0px;margin-bottom:0px;" id="print_alamat_pembeli">Alamat pembeli
+                    </p>
+                    <p style="margin-top:0px;margin-bottom:0px;" id="print_wa_pembeli">039489028302</p>
+                </td>
+                <td width="40%" align="right">
+                    <p style="margin-top:5px;margin-bottom:5px;"><span
+                            style="background-color:#3a5c84;color:white;padding:5px;"><b>Faktur</b></span></p>
                     <p style="margin-top:5px;margin-bottom:8px;">{{$kode}}</p>
-                    <p style="margin-top:5px;margin-bottom:5px;"><b>Tanggal</b></p>
-                    <p style="margin-top:5px;margin-bottom:8px;" id="print_tgl_transaksi">@jk0wpow</p>
-                    <p style="margin-top:5px;margin-bottom:5px;"><b>Karena</b></p>
-                    <p style="margin-top:5px;">@jk0wpow</p>
+                    <p style="margin-top:12px;margin-bottom:5px;"><span
+                            style="background-color:#3a5c84;color:white;padding:5px;"><b>Tanggal</b></span></p>
+                    <p style="margin-top:5px;margin-bottom:8px;" id="print_tgl_transaksi"></p>
                 </td>
             </tr>
         </table>
-        <hr>
-        <p>UNTUK</p>
-        <p style="margin-top:5px;margin-bottom:5px;"><b id="print_pembeli">Penbeli Jasa</b></p>
-        <p style="margin-top:5px;margin-bottom:5px;" id="print_alamat_pembeli">Alamat pembeli</p>
-        <p style="margin-top:5px;margin-bottom:5px;" id="print_wa_pembeli">039489028302</p>
+
         <table border="1" width="100%" style="border-collapse: collapse;margin-top:10px;">
-            <thead>
+            <thead style="background-color: #3a5c84;">
                 <tr>
-                    <td width="50%" style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;">
-                        <b>DESKRIPSI</b>
+                    <td width="50%"
+                        style="border: 0px 0px 0px 1px solid black;padding-top:7px;padding-bottom:7px;padding-right:15px;padding-left:15px;color:white;">
+                        <b> DESKRIPSI</b>
                     </td>
-                    <td width="5%" style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;">
+                    <td width="5%"
+                        style="border: 0px 0px 0px 1px solid black;padding-top:7px;padding-bottom:7px;padding-right:15px;padding-left:15px;color:white;">
                         <b>DISKON</b>
                     </td>
-                    <td width="20%" style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;">
+                    <td width="20%"
+                        style="border: 0px 0px 0px 1px solid black;padding-top:7px;padding-bottom:7px;padding-right:15px;padding-left:15px;color:white;"
+                        align="center">
                         <b>HARGA</b>
                     </td>
-                    <td width="25%" style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;">
+                    <td width="25%"
+                        style="border: 0px 0px 0px 1px solid black;padding-top:7px;padding-bottom:7px;padding-right:15px;padding-left:15px;color:white;"
+                        align="center">
                         <b>JUMLAH</b>
                     </td>
                 </tr>
@@ -385,7 +409,8 @@ $datasetting = DB::table('setting')->orderby('id','desc')->limit(1)->get();
                     <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;" colspan="3"
                         align="right">PPN</td>
                     <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;" align="right">
-                        <b id="print_ppn">Rp. 0</b></td>
+                        <b id="print_ppn">Rp. 0</b>
+                    </td>
                 </tr>
                 <tr>
                     <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;" colspan="3"
@@ -396,10 +421,11 @@ $datasetting = DB::table('setting')->orderby('id','desc')->limit(1)->get();
                 </tr>
             </tfoot>
         </table>
-        <table border="0" width="100%">
+        <table border="0" width="100%" style="vertical-align:top;">
             <tr>
                 <td width="55%" rowspan="2" style="vertical-align:top;padding-top:10px;padding-right:20px;">
-                    <h5><b>Instruksi Pembayaran</b></h5>
+                    <h5 style="margin-bottom:0px;"><b>Instruksi Pembayaran</b></h5>
+                    <hr style="margin-top:3px;border-top: 2px solid #3a5c84;border-radius: 2px;">
                     @foreach($datasetting as $rowset)
                     <div style=" font-size: 12;">
                         {!!$rowset->note_invoice!!}
@@ -422,23 +448,23 @@ $datasetting = DB::table('setting')->orderby('id','desc')->limit(1)->get();
                                 <b id="print_dibayar"></b>
                             </td>
                         </tr>
-                        <tr>
-                            <td style="padding-right:15px;padding-left:15px;"><b>GRAND TOTAL</b></td>
-                            <td style="padding-right:15px;padding-left:15px;" align="right">
-                                <b id="print_total_akhir"></b>
-                            </td>
-                        </tr>
+                        <td style="padding-top:15px;padding-right:15px;padding-left:15px;"><b>GRAND
+                                TOTAL</b>
+                        </td>
+                        <td style="padding-top:15px;padding-right:15px;padding-left:15px;" align="right">
+                            <span style="padding-top:15px;background-color:#3a5c84;color:white;padding:5px;"><b
+                                    id="print_total_akhir"></b></span>
+                        </td>
                     </table>
-                </td>
             </tr>
             <tr>
-                <td width="45%" align="right">
+                <td width="45%" align="right" colspan="2">
                     <br>
                     @php
                     $newkode = base64_encode($kode);
                     @endphp
                     {!! QrCode::size(100)->generate(url('/dokumen/transaksi/'.$newkode)); !!}
-                    <br>
+                    <br><br>
                     <span><b>TANGGAL DITANDATANGANI</b></span><br>
                     <span id="print_tgl_ttd"></span>
                 </td>
@@ -446,9 +472,11 @@ $datasetting = DB::table('setting')->orderby('id','desc')->limit(1)->get();
         </table>
         <br>
         <div style="page-break-before: always;"></div>
-        <span>Bukti Transfer / Pembayaran :</span>
+        <br><br>
+        <span style="background-color:#3a5c84;color:white;padding:5px;"><b>Bukti Transfer / Pembayaran
+                :</b></span>
         <hr>
-        <table border="0">
+        <table border="0" width="100%">
             <tr id="print_bukti_tf">
             </tr>
         </table>
