@@ -146,6 +146,21 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Nama Pengantin</label>
+                                                <input type="text" class="form-control" value="{{$row->nama_pengantin}}" name="nama_pengantin"
+                                                    id="nama_pengantin" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Nama Orang Tua</label>
+                                                <input type="text" class="form-control" value="{{$row->nama_orangtua}}" name="ortu" id="ortu" required>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Alamat Customer</label>
                                     <textarea name="alamat" id="alamat" class="form-control">{{$row->alamat_customer}}</textarea>

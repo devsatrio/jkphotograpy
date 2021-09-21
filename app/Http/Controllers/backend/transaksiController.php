@@ -390,6 +390,8 @@ class transaksiController extends Controller
             'tgl_buat'=>$request->tgl,
             'created_at'=>date('Y-m-d H:i:s'),
             'created_by'=>Auth::user()->id,
+            'nama_pengantin'=>$request->nama_pengantin,
+            'nama_orangtua'=>$request->ortu,
         ]);
         DB::table('transaksi_log')
         ->insert([
@@ -438,7 +440,7 @@ class transaksiController extends Controller
                     'laba'=>$rowdetail->laba,
                     'tgl_eksekusi'=>$rowdetail->tgl_eksekusi,
                     'lokasi'=>$rowdetail->lokasi,
-                    'pembuat'=>Auth::user()->id
+                    'pembuat'=>Auth::user()->id,
                 ];
             }
         }
@@ -493,6 +495,8 @@ class transaksiController extends Controller
             'tgl_buat'=>$request->tgl,
             'updated_at'=>date('Y-m-d H:i:s'),
             'updated_by'=>Auth::user()->id,
+            'nama_pengantin'=>$request->nama_pengantin,
+            'nama_orangtua'=>$request->ortu,
         ]);
         DB::table('transaksi_log')
         ->insert([

@@ -330,6 +330,8 @@ $('#simpanbtn').on('click',function(e){
                 'detail_grand_total':$('#detail_grand_total').val(),
                 'angsur':$('#angsur').val(),
                 'ket_charge':$('#ket_charge').val(),
+                'ortu':$('#ortu').val(),
+                'nama_pengantin':$('#nama_pengantin').val(),
             },
             success: function () {
                 swalWithBootstrapButtons.fire({

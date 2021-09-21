@@ -144,6 +144,22 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Nama Pengantin</label>
+                                                <input type="text" class="form-control" name="nama_pengantin"
+                                                    id="nama_pengantin" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Nama Orang Tua</label>
+                                                <input type="text" class="form-control" name="ortu" id="ortu" required>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Alamat Customer</label>
                                         <textarea name="alamat" id="alamat" class="form-control"></textarea>
@@ -356,18 +372,20 @@ $datasetting = DB::table('setting')->orderby('id','desc')->limit(1)->get();
                     <p style="margin-top:5px;margin-bottom:8px;"><span
                             style="background-color:#3a5c84;color:white;padding:5px;"><b>UNTUK</b></span>
                     </p>
-                    <p style="margin-top:0px;margin-bottom:0px;"><b id="print_pembeli">Penbeli Jasa</b></p>
-                    <p style="margin-top:0px;margin-bottom:0px;" id="print_alamat_pembeli">Alamat pembeli
-                    </p>
-                    <p style="margin-top:0px;margin-bottom:0px;" id="print_wa_pembeli">039489028302</p>
+                    <p style="margin-top:0px;margin-bottom:0px;"><b id="print_pembeli"></b></p>
+                    <p style="margin-top:0px;margin-bottom:0px;" id="print_alamat_pembeli"></p>
+                    <p style="margin-top:0px;margin-bottom:0px;" id="print_wa_pembeli"></p>
+
+                    <p style="margin-top:10px;margin-bottom:0px;" id="print_nama_pengantin"></p>
+                    <p style="margin-top:0px;margin-bottom:0px;" id="print_nama_orangtua"></p>
                 </td>
                 <td width="40%" align="right">
                     <p style="margin-top:5px;margin-bottom:5px;"><span
                             style="background-color:#3a5c84;color:white;padding:5px;"><b>Faktur</b></span></p>
-                    <p style="margin-top:5px;margin-bottom:8px;">{{$kode}}</p>
-                    <p style="margin-top:12px;margin-bottom:5px;"><span
+                    <p style="margin-top:7px;margin-bottom:8px;">{{$kode}}</p>
+                    <p style="margin-top:17px;margin-bottom:5px;"><span
                             style="background-color:#3a5c84;color:white;padding:5px;"><b>Tanggal</b></span></p>
-                    <p style="margin-top:5px;margin-bottom:8px;" id="print_tgl_transaksi"></p>
+                    <p style="margin-top:7px;margin-bottom:8px;" id="print_tgl_transaksi"></p>
                 </td>
             </tr>
         </table>

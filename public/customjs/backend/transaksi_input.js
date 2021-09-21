@@ -466,6 +466,8 @@ function cetaktransaksi(kode) {
                 $('#print_pembeli').html(value.nama_customer);
                 $('#print_alamat_pembeli').html(value.alamat_customer);
                 $('#print_wa_pembeli').html(value.telp_customer);
+                $('#print_nama_pengantin').html('Nama Pengantin : '+value.nama_pengantin);
+                $('#print_nama_orangtua').html('Nama Orang Tua : '+value.nama_orangtua);
                 $('#print_tgl_transaksi').html(value.tgl_buat);
                 $('#print_tgl_ttd').html(value.tgl_buat);
                 $('#print_potongan').html( 'Rp ' + rupiah(value.potongan));

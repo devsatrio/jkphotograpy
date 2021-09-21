@@ -62,6 +62,18 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
+                                        <label for="exampleInputEmail1">Nama Pengantin</label>
+                                        <p>{{$row->nama_pengantin}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Nama Orang Tua</label>
+                                        <p>{{$row->nama_orangtua}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
                                         <label for="exampleInputEmail1">Alamat</label>
                                         <p>{{$row->alamat_customer}}</p>
                                     </div>
@@ -335,17 +347,18 @@
                                 <p style="margin-top:5px;margin-bottom:8px;"><span
                                         style="background-color:#3a5c84;color:white;padding:5px;"><b>UNTUK</b></span>
                                 </p>
-                                <p style="margin-top:0px;margin-bottom:0px;"><b id="print_pembeli">Penbeli Jasa</b></p>
-                                <p style="margin-top:0px;margin-bottom:0px;" id="print_alamat_pembeli">Alamat pembeli
-                                </p>
-                                <p style="margin-top:0px;margin-bottom:0px;" id="print_wa_pembeli">039489028302</p>
+                                <p style="margin-top:0px;margin-bottom:0px;"><b id="print_pembeli"></b></p>
+                                <p style="margin-top:0px;margin-bottom:0px;" id="print_alamat_pembeli"></p>
+                                <p style="margin-top:0px;margin-bottom:0px;" id="print_wa_pembeli"></p>
+                                
+                                <p style="margin-top:10px;margin-bottom:0px;" id="print_nama_pengantin"></p>
+                                <p style="margin-top:0px;margin-bottom:0px;" id="print_nama_orangtua"></p>
                             </td>
                             <td width="40%" align="right">
                                 <p style="margin-top:5px;margin-bottom:5px;"><span style="background-color:#3a5c84;color:white;padding:5px;"><b>Faktur</b></span></p>
-                                <p style="margin-top:5px;margin-bottom:8px;">{{$row->kode}}</p>
-                                <p style="margin-top:12px;margin-bottom:5px;"><span
-                                        style="background-color:#3a5c84;color:white;padding:5px;"><b>Tanggal</b></span></p>
-                                <p style="margin-top:5px;margin-bottom:8px;" id="print_tgl_transaksi"></p>
+                                <p style="margin-top:7px;margin-bottom:8px;">{{$row->kode}}</p>
+                                <p style="margin-top:17px;margin-bottom:5px;"><span style="background-color:#3a5c84;color:white;padding:5px;"><b>Tanggal</b></span></p>
+                                <p style="margin-top:7px;margin-bottom:8px;" id="print_tgl_transaksi"></p>
                             </td>
                         </tr>
                     </table>
@@ -485,6 +498,8 @@ function cetaktransaksi(kode) {
                 $('#print_pembeli').html(value.nama_customer);
                 $('#print_alamat_pembeli').html(value.alamat_customer);
                 $('#print_wa_pembeli').html(value.telp_customer);
+                $('#print_nama_pengantin').html('Nama Pengantin : '+value.nama_pengantin);
+                $('#print_nama_orangtua').html('Nama Orang Tua : '+value.nama_orangtua);
                 $('#print_tgl_transaksi').html(value.tgl_buat);
                 $('#print_tgl_ttd').html(value.tgl_buat);
                 $('#print_potongan').html('Rp ' + rupiah(value.potongan));
