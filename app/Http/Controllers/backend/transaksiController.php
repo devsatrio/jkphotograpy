@@ -214,7 +214,8 @@ class transaksiController extends Controller
             $lower_file_name=strtolower($nameland);
             $replace_space=str_replace(' ', '-', $lower_file_name);
             $finalname=time().'-'.$replace_space;
-            $destination=public_path('img/buktibayar');
+            //$destination=public_path('img/buktibayar');
+            $destination=base_path('../public_html/img/buktibayar');
             $request->file('bts')->move($destination,$finalname);
         }else{
             $finalname ='gambar_kosong';
@@ -321,7 +322,8 @@ class transaksiController extends Controller
             $lower_file_name=strtolower($nameland);
             $replace_space=str_replace(' ', '-', $lower_file_name);
             $finalname=time().'-'.$replace_space;
-            $destination=public_path('img/buktibayar');
+            //$destination=public_path('img/buktibayar');
+            $destination=base_path('../public_html/img/buktibayar');
             $request->file('bts')->move($destination,$finalname);
         }
         if(str_replace('.','',$request->detail_dibayar)>=$request->detail_grand_total){
