@@ -26,7 +26,7 @@
                     @csrf
                     <div class="input-group mb-3">
                         <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"
-                            name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                            name="username" value="{{ old('username') }}" palceholder="username anda" required autocomplete="username" autofocus>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -40,7 +40,7 @@
                     @enderror
                     <div class="input-group mb-3">
                         <input id="password" type="password"
-                            class="form-control @error('password') is-invalid @enderror" id="password" name="password" required
+                            class="form-control @error('password') is-invalid @enderror" palceholder="password anda" id="password" name="password" required
                             autocomplete="current-password">
 
 
