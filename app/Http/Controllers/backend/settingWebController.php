@@ -30,7 +30,8 @@ class settingWebController extends Controller
             $lower_file_name=strtolower($nameland);
             $replace_space=str_replace(' ', '-', $lower_file_name);
             $finalname=time().'-'.$replace_space;
-            $destination=public_path('img/setting');
+            $destination=base_path('../public_html/img/setting');
+            //$destination=public_path('img/setting');
             $request->file('logo')->move($destination,$finalname);
             
             DB::table('setting')
