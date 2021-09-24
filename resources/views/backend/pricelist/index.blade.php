@@ -39,12 +39,15 @@
                         <div class="card-header">
                             <h3 class="card-title">List Data</h3>
                             <div class="card-tools">
+                            @if(Auth::user()->level=='Super Admin')
                                 <a href="{{url('/pricelist/create')}}">
                                     <button type="button" class="btn btn-default btn-sm"><i class="fas fa-plus"></i>
                                         Tambah
                                         Data
                                     </button>
                                 </a>
+                                @endif
+                                <input type="hidden" id="level" value="{{Auth::user()->level}}">
                             </div>
                         </div>
                         <div class="card-body">

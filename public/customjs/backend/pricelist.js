@@ -25,7 +25,12 @@ $(function () {
             { data: 'name', name: 'name' },
             {
                 render: function (data, type, row) {
-                    return '<a href="/pricelist/' + row['id'] + '" class="btn btn-sm m-1 btn-info"><i class="fa fa-eye"></i></a><a href="/pricelist/' + row['id'] + '/edit" class="btn btn-sm m-1 btn-success"><i class="fa fa-wrench"></i></a><button class="btn btn-sm m-1 btn-danger" onclick="hapusdata(' + row['id'] + ')"><i class="fa fa-trash"></i></button>'
+                    if($('#level').val()=='Super Admin'){
+                        return '<a href="/pricelist/' + row['id'] + '" class="btn btn-sm m-1 btn-info"><i class="fa fa-eye"></i></a><a href="/pricelist/' + row['id'] + '/edit" class="btn btn-sm m-1 btn-success"><i class="fa fa-wrench"></i></a><button class="btn btn-sm m-1 btn-danger" onclick="hapusdata(' + row['id'] + ')"><i class="fa fa-trash"></i></button>'
+                    }else{
+                        return '<a href="/pricelist/' + row['id'] + '" class="btn btn-sm m-1 btn-info"><i class="fa fa-eye"></i></a>'
+                    }
+                    
                 },
                 "className": 'text-center',
                 "orderable": false,
