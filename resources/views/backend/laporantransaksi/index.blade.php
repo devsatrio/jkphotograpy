@@ -56,7 +56,7 @@
 @endsection
 
 @section('customjs')
-<script src="{{asset('customjs/backend/flatpickr')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 @endsection
 
 @section('customscripts')

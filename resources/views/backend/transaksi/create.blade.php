@@ -506,7 +506,7 @@ $datasetting = DB::table('setting')->orderby('id','desc')->limit(1)->get();
 @section('customjs')
 <script src="{{asset('assets/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{asset('assets/plugins/select2/js/select2.full.min.js')}}"></script>
-<script src="{{asset('customjs/backend/flatpickr')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="{{asset('customjs/backend/loading.js')}}"></script>
 @endsection
 

@@ -170,7 +170,7 @@
 @endsection
 
 @section('customjs')
-<script src="{{asset('customjs/backend/flatpickr')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="{{asset('assets/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 <script src="{{asset('customjs/backend/loading.js')}}"></script>
 @endsection
