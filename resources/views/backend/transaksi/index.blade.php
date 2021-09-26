@@ -184,65 +184,67 @@
             <div class="modal-header">
                 <h5 class="modal-title">Pembayaran Transaksi <span id="tampil_kode"></span></h5>
             </div>
-            <form action="{{url('bayar-transaksi')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Dibayar</label>
-                                <p id="tampil_dibayar"></p>
+            <div class="loading-div" id="panelmodal">
+                <form action="{{url('bayar-transaksi')}}" id="pembayaranform" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Dibayar</label>
+                                    <p id="tampil_dibayar"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Kekurangan</label>
+                                    <p id="tampil_kekurangan"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Pembayaran Ke</label>
+                                    <p id="tampil_angsuran"></p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Kekurangan</label>
-                                <p id="tampil_kekurangan"></p>
-                            </div>
+                        <hr>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Dibayar</label>
+                            <input type="text" class="form-control" name="dibayar" id="dibayar" required>
+                            <input type="hidden" name="kode" id="kode">
+                            <input type="hidden" name="terbayar" id="terbayar">
+                            <input type="hidden" name="angsuran" id="angsuran">
+                            <input type="hidden" name="total" id="total">
+                            <span class="text-muted">*Jangan menginputkan lebih dari jumlah kekurangan</span>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Pembayaran Ke</label>
-                                <p id="tampil_angsuran"></p>
-                            </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Metode Pembayaran</label>
+                            <select name="metode_bayar" id="metode_bayar" class="form-control">
+                                <option value="Transfer">Transfer</option>
+                                <option value="Cash">Cash</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Bukti Transfer/Pembayaran</label>
+                            <input type="file" class="form-control" name="bts" id="bts" accept="image/*" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Keterangan</label>
+                            <textarea name="keterangan" id="keterangan" class="form-control" rows="2"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tgl Bayar</label>
+                            <input type="text" class="form-control" value="{{date('Y-m-d H:i:s')}}" name="tglbayar"
+                                id="tglbayar" required>
                         </div>
                     </div>
-                    <hr>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Dibayar</label>
-                        <input type="text" class="form-control" name="dibayar" id="dibayar" required>
-                        <input type="hidden" name="kode" id="kode">
-                        <input type="hidden" name="terbayar" id="terbayar">
-                        <input type="hidden" name="angsuran" id="angsuran">
-                        <input type="hidden" name="total" id="total">
-                        <span class="text-muted">*Jangan menginputkan lebih dari jumlah kekurangan</span>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="simpanpembayaran">Simpan</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Metode Pembayaran</label>
-                        <select name="metode_bayar" id="metode_bayar" class="form-control">
-                            <option value="Transfer">Transfer</option>
-                            <option value="Cash">Cash</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Bukti Transfer/Pembayaran</label>
-                        <input type="file" class="form-control" name="bts" id="bts" accept="image/*" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Keterangan</label>
-                        <textarea name="keterangan" id="keterangan" class="form-control" rows="2"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tgl Bayar</label>
-                        <input type="text" class="form-control" value="{{date('Y-m-d H:i:s')}}" name="tglbayar"
-                            id="tglbayar" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>

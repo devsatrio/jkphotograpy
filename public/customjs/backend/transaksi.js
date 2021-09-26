@@ -18,6 +18,9 @@ $(function() {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
     });
+    $('#pembayaranform').on('submit', function () {
+        $('#simpanpembayaran').attr('disabled', 'disabled');
+    });
 });
 
 //===============================================================================================
