@@ -316,18 +316,18 @@
                         <tr>
                             <td width="15%" align="center">
                                 @foreach($datasetting as $rowset)
-                                <img src="{{asset('img/setting/'.$rowset->logo)}}" alt="logo" width="150px;">
+                                <img src="{{asset('img/setting/'.$rowset->logo)}}" alt="logo" width="110px;">
                                 @endforeach
                             </td>
                             <td width="85%" style="padding-right:15px;padding-left:15px;">
                                 @foreach($datasetting as $rowset)
-                                <p style="font-size:20px;margin-top:10px;margin-bottom:5px;font-color:#0066ff;">
+                                <p style="font-size:15px;margin-top:10px;margin-bottom:5px;font-color:#0066ff;">
                                     <b>{{$rowset->nama_company}}</b>
                                 </p>
-                                <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->owner}}</p>
-                                <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->alamat}}</p>
-                                <p style="margin-top:5px;margin-bottom:0px;">{{$rowset->cp}}</p>
-                                <p style="margin-top:5px;margin-bottom:0px;color:#3a5c84;"><img
+                                <p style="font-size:12px;margin-top:5px;margin-bottom:0px;">{{$rowset->owner}}</p>
+                                <p style="font-size:12px;margin-top:5px;margin-bottom:0px;">{{$rowset->alamat}}</p>
+                                <p style="font-size:12px;margin-top:5px;margin-bottom:0px;">{{$rowset->cp}}</p>
+                                <p style="font-size:12px;margin-top:5px;margin-bottom:0px;color:#3a5c84;"><img
                                         src="{{asset('img/nota/instagram.png')}}" alt=""
                                         width="12px;">&nbsp;{{$rowset->instagram}}&nbsp;<img
                                         src="{{asset('img/nota/envelope.png')}}" alt=""
@@ -345,20 +345,20 @@
                         <tr>
                             <td width="60%">
                                 <p style="margin-top:5px;margin-bottom:8px;"><span
-                                        style="background-color:#3a5c84;color:white;padding:5px;"><b>UNTUK</b></span>
+                                        style="font-size:12px;background-color:#3a5c84;color:white;padding:4px;"><b>UNTUK</b></span>
                                 </p>
-                                <p style="margin-top:0px;margin-bottom:0px;"><b id="print_pembeli"></b></p>
-                                <p style="margin-top:0px;margin-bottom:0px;" id="print_alamat_pembeli"></p>
-                                <p style="margin-top:0px;margin-bottom:0px;" id="print_wa_pembeli"></p>
+                                <p style="margin-top:0px;margin-bottom:0px;font-size:12px;"><b id="print_pembeli"></b></p>
+                                <p style="margin-top:0px;margin-bottom:0px;font-size:12px;" id="print_alamat_pembeli"></p>
+                                <p style="margin-top:0px;margin-bottom:0px;font-size:12px;" id="print_wa_pembeli"></p>
                                 
-                                <p style="margin-top:10px;margin-bottom:0px;" id="print_nama_pengantin"></p>
-                                <p style="margin-top:0px;margin-bottom:0px;" id="print_nama_orangtua"></p>
+                                <p style="margin-top:10px;margin-bottom:0px;font-size:12px;" id="print_nama_pengantin"></p>
+                                <p style="margin-top:0px;margin-bottom:0px;font-size:12px;" id="print_nama_orangtua"></p>
                             </td>
                             <td width="40%" align="right">
-                                <p style="margin-top:5px;margin-bottom:5px;"><span style="background-color:#3a5c84;color:white;padding:5px;"><b>Faktur</b></span></p>
-                                <p style="margin-top:7px;margin-bottom:8px;">{{$row->kode}}</p>
-                                <p style="margin-top:17px;margin-bottom:5px;"><span style="background-color:#3a5c84;color:white;padding:5px;"><b>Tanggal</b></span></p>
-                                <p style="margin-top:7px;margin-bottom:8px;" id="print_tgl_transaksi"></p>
+                                <p style="margin-top:5px;margin-bottom:5px;font-size:12px;"><span style="font-size:12px;background-color:#3a5c84;color:white;padding:4px;"><b>Faktur</b></span></p>
+                                <p style="margin-top:7px;margin-bottom:8px;font-size:12px;">{{$row->kode}}</p>
+                                <p style="margin-top:17px;margin-bottom:5px;font-size:12px;"><span style="font-size:12px;background-color:#3a5c84;color:white;padding:4px;"><b>Tanggal</b></span></p>
+                                <p style="margin-top:7px;margin-bottom:8px;font-size:12px;" id="print_tgl_transaksi"></p>
                             </td>
                         </tr>
                     </table>
@@ -367,20 +367,20 @@
                         <thead style="background-color: #3a5c84;">
                             <tr>
                                 <td width="50%"
-                                    style="border: 0px 0px 0px 1px solid black;padding-top:7px;padding-bottom:7px;padding-right:15px;padding-left:15px;color:white;">
+                                    style="border: 0px 0px 0px 1px solid black;padding-top:5px;padding-bottom:5px;padding-right:15px;padding-left:15px;color:white;font-size:12px;">
                                     <b> DESKRIPSI</b>
                                 </td>
                                 <td width="5%"
-                                    style="border: 0px 0px 0px 1px solid black;padding-top:7px;padding-bottom:7px;padding-right:15px;padding-left:15px;color:white;">
+                                    style="border: 0px 0px 0px 1px solid black;padding-top:5px;padding-bottom:5px;padding-right:15px;padding-left:15px;color:white;font-size:12px;">
                                     <b>DISKON</b>
                                 </td>
                                 <td width="20%"
-                                    style="border: 0px 0px 0px 1px solid black;padding-top:7px;padding-bottom:7px;padding-right:15px;padding-left:15px;color:white;"
+                                    style="border: 0px 0px 0px 1px solid black;padding-top:5px;padding-bottom:5px;padding-right:15px;padding-left:15px;color:white;font-size:12px;"
                                     align="center">
                                     <b>HARGA</b>
                                 </td>
                                 <td width="25%"
-                                    style="border: 0px 0px 0px 1px solid black;padding-top:7px;padding-bottom:7px;padding-right:15px;padding-left:15px;color:white;"
+                                    style="border: 0px 0px 0px 1px solid black;padding-top:5px;padding-bottom:5px;padding-right:15px;padding-left:15px;color:white;font-size:12px;"
                                     align="center">
                                     <b>JUMLAH</b>
                                 </td>
@@ -390,32 +390,32 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;"
+                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;font-size:12px;"
                                     colspan="3" align="right">Potongan</td>
-                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;"
+                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;font-size:12px;"
                                     align="right">
                                     <b id="print_potongan">Rp. 0</b>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;"
+                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;font-size:12px;"
                                     colspan="3" align="right">PPN</td>
-                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;"
+                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;font-size:12px;"
                                     align="right">
                                     <b id="print_ppn">Rp. 0</b>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;"
+                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;font-size:12px;"
                                     colspan="3" align="right">Charge</td>
-                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;"
+                                <td style="border: 0px 0px 0px 1px solid black;padding-right:15px;padding-left:15px;font-size:12px;"
                                     align="right">
                                     <b id="print_charge">Rp. 0</b>
                                 </td>
                             </tr>
                         </tfoot>
                     </table>
-                    <table border="0" width="100%" style="vertical-align:top;">
+                    <table border="0" width="100%" style="vertical-align:top;font-size:12px;">
                         <tr>
                             <td width="55%" rowspan="2" style="vertical-align:top;padding-top:10px;padding-right:20px;">
                                 <h5 style="margin-bottom:0px;"><b>Instruksi Pembayaran</b></h5>
@@ -430,25 +430,25 @@
                                 <table width="100%" border="0"
                                     style="font-size:15px;border-collapse: collapse;margin-top:10px;">
                                     <tr>
-                                        <td style="padding-right:15px;padding-left:15px;">
+                                        <td style="padding-right:15px;padding-left:15px;font-size:12px;">
                                             <b>TOTAL</b>
                                         </td>
-                                        <td style="padding-right:15px;padding-left:15px;" align="right">
+                                        <td style="padding-right:15px;padding-left:15px;font-size:12px;" align="right">
                                             <b id="print_total"></b>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="padding-right:15px;padding-left:15px;"><b>DIBAYAR</b></td>
-                                        <td style="padding-right:15px;padding-left:15px;" align="right">
+                                        <td style="padding-right:15px;padding-left:15px;font-size:12px;"><b>DIBAYAR</b></td>
+                                        <td style="padding-right:15px;padding-left:15px;font-size:12px;" align="right">
                                             <b id="print_dibayar"></b>
                                         </td>
                                     </tr>
-                                    <td style="padding-top:15px;padding-right:15px;padding-left:15px;"><b>GRAND
+                                    <td style="padding-top:10px;padding-right:15px;padding-left:15px;font-size:12px;"><b>GRAND
                                             TOTAL</b>
                                     </td>
-                                    <td style="padding-top:15px;padding-right:15px;padding-left:15px;" align="right">
+                                    <td style="padding-top:10px;padding-right:15px;padding-left:15px;font-size:12px;" align="right">
                                         <span
-                                            style="padding-top:15px;background-color:#3a5c84;color:white;padding:5px;"><b
+                                            style="padding-top:15px;background-color:#3a5c84;color:white;padding:5px;font-size:12px;"><b
                                                 id="print_total_akhir"></b></span>
                                     </td>
                                 </table>
@@ -461,15 +461,13 @@
                                 @endphp
                                 {!! QrCode::size(100)->generate(url('/dokumen/transaksi/'.$newkode)); !!}
                                 <br><br>
-                                <span><b>TANGGAL DITANDATANGANI</b></span><br>
-                                <span id="print_tgl_ttd"></span>
+                                <span style="font-size:12px;"><b>TANGGAL DITANDATANGANI</b></span><br>
+                                <span style="font-size:12px;" id="print_tgl_ttd"></span>
                             </td>
                         </tr>
                     </table>
-                    <br>
-                    <div style="page-break-before: always;"></div>
                     <br><br>
-                    <span style="background-color:#3a5c84;color:white;padding:5px;"><b>Bukti Transfer / Pembayaran
+                    <span style="background-color:#3a5c84;color:white;padding:5px;font-size:12px;"><b>Bukti Transfer / Pembayaran
                             :</b></span>
                     <hr>
                     <table border="0" width="100%">
